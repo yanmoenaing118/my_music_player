@@ -1,0 +1,81 @@
+.AudioPoster {
+  width: 100%;
+  max-height: 75vh;
+  overflow: hidden;
+}
+
+.AudioPoster img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.AudioPlayer {
+  background-color: black;
+}
+
+.AudioContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.AudioActions {
+  padding: 1.2rem 1rem;
+}
+
+.AudioArtist {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.2rem;
+}
+
+.AudioInfo h3 {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-weight: 300;
+  color: #fff;
+}
+
+.AudioInfo span {
+  font-size: 1rem;
+  color: #fff;
+}
+
+.CurrentTime {
+}
+
+.Progress {
+}
+
+.EndTime {
+}
+
+.AudioControls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Next {
+}
+
+.StopPause {
+}
+
+.Prev {
+}
+
+.Stop {
+}
+
+.AudioBtn {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  color: #fff;
+}
+
+.AudioBtn:not(:last-child) {
+  margin-right: 1.2rem;
+}
