@@ -2,7 +2,6 @@ import React, { createRef, useState, useEffect } from "react";
 import { Container, ContainerCenter } from "../container/Container";
 import MyAudio from "./../../audio/lar1.mp3";
 import AudioPoster from "./../../images/general_lady.jpg";
-import "./audio.css";
 import ProgressBar from "./ProgressBar";
 import {
   MdPlayCircleOutline,
@@ -10,6 +9,21 @@ import {
   MdSkipNext,
   MdSkipPrevious,
 } from "react-icons/md";
+
+import {
+  GradientBg,
+  AudioBackgroundImageWrapper,
+  AudioArtist,
+  AudioControlBtn,
+  AudioControlsContainer,
+  AudioDetailsContainer,
+  AudioAlbumCoverPicture,
+  AudioElement,
+  AudioPlayerContainer,
+  AudioTitle,
+  AudioTitleContainer,
+  AudioBackgroundImage,
+} from "./AudioElements";
 
 export default function AudioPlayer() {
   const audioRef = createRef();
@@ -21,16 +35,18 @@ export default function AudioPlayer() {
   const onPausePlay = (e) => {
     if (audioRef.current.paused || audioRef.current.ended) {
       audioRef.current.play();
+      setPlay(true);
     } else {
       audioRef.current.pause();
+      setPlay(false);
     }
 
     setPlay(!play);
   };
 
-  // const onStop = (e) => {
-  //   audioRef.current.currentTime = 0;
-  // };
+  const onStop = (e) => {
+    audioRef.current.currentTime = 0;
+  };
 
   const onAudioMetadataLoad = (e) => {
     const duration = audioRef.current.duration;
@@ -48,21 +64,34 @@ export default function AudioPlayer() {
     audioRef.current.currentTime = pos * audioRef.current.duration;
   };
 
+  const onAudioEnded = () => {
+    stopPlayer();
+  };
+
+  const stopPlayer = () => {
+    audioRef.current.currentTime = 0;
+    setPlay(false);
+  };
+
   useEffect(() => {
     audioRef.current.controls = false;
   }, [audioRef]);
   return (
     <Container pad="0px">
       <ContainerCenter mWidth="100%">
-        <div className="AudioPlayer">
-          <div className="AudioPoster">
-            <img src={AudioPoster} alt="Poster" />
-          </div>
-          <Container pad="0">
+        <AudioBackgroundImageWrapper className="AudioPoster">
+          <GradientBg></GradientBg>
+          <AudioBackgroundImage src={AudioPoster} alt="Poster" />
+        </AudioBackgroundImageWrapper>
+        <AudioPlayerContainer>
+          <Container mb="10px">
             <ContainerCenter mWidth="800px">
-              <div className="AudioActions">
-                <div className="AudioContainer">
-                  <audio
+              <AudioDetailsContainer>
+                <AudioAlbumCoverPicture>
+                  <img src={AudioPoster} alt="Album Cover" />
+                </AudioAlbumCoverPicture>
+                <AudioTitleContainer>
+                  <AudioElement
                     ref={audioRef}
                     src={MyAudio}
                     preload="metadata"
@@ -70,40 +99,41 @@ export default function AudioPlayer() {
                     controls
                     onLoadedMetadata={onAudioMetadataLoad}
                     onTimeUpdate={onAudioTimeUpdate}
-                  ></audio>
-                  <div className="AudioInfo">
-                    <div className="AudioArtist">
-                      <h3>Only For You</h3>
-                      <span>Taylor Swift - General's Lady</span>
-                    </div>
-                    <ProgressBar
-                      start={startTime}
-                      end={endTime}
-                      value={currentTime}
-                      skip={onSkipAhead}
-                    />
-                  </div>
-                </div>
-                <div className="AudioControls">
-                  <button className="AudioBtn">
-                    <MdSkipPrevious size="40px" />
-                  </button>
-                  <button className="AudioBtn StopPause" onClick={onPausePlay}>
-                    {play ? (
-                      <MdPauseCircleOutline size="60px" />
-                    ) : (
-                      <MdPlayCircleOutline size="60px" />
-                    )}
-                  </button>
+                    onEnded={onAudioEnded}
+                  ></AudioElement>
 
-                  <button className="AudioBtn">
-                    <MdSkipNext size="40px" />
-                  </button>
-                </div>
-              </div>
+                  <AudioTitle>Only For You</AudioTitle>
+                  <AudioArtist>Taylor Swift - General's Lady</AudioArtist>
+                </AudioTitleContainer>
+              </AudioDetailsContainer>
             </ContainerCenter>
           </Container>
-        </div>
+
+          <ProgressBar
+            start={startTime}
+            end={endTime}
+            value={currentTime}
+            skip={onSkipAhead}
+          />
+
+          <AudioControlsContainer>
+            <AudioControlBtn small={true}>
+              <MdSkipPrevious size="85%" />
+            </AudioControlBtn>
+
+            <AudioControlBtn onClick={onPausePlay}>
+              {play ? (
+                <MdPauseCircleOutline size="100%" />
+              ) : (
+                <MdPlayCircleOutline size="100%" />
+              )}
+            </AudioControlBtn>
+
+            <AudioControlBtn small={true}>
+              <MdSkipNext size="85%" />
+            </AudioControlBtn>
+          </AudioControlsContainer>
+        </AudioPlayerContainer>
       </ContainerCenter>
     </Container>
   );

@@ -1,8 +1,16 @@
 import React, { createRef } from "react";
 import format from "format-duration";
 import "./progressBar.css";
+import { Container, ContainerCenter } from "../container/Container";
+import {
+  ProgressBarContainer,
+  ProgressBar,
+  ProgressBarPlayed,
+  TimesContainer,
+  Time,
+} from "./ProgressBarElements";
 
-export default function ProgressBar({ start, end, value, skip }) {
+export default function Progress({ start, end, value, skip }) {
   const end_duration_format = format(end * 1000, { leading: true });
   const cur_duration_format = format(value * 1000, { leading: true });
   const width = Math.floor((value / end) * 100);
@@ -15,28 +23,32 @@ export default function ProgressBar({ start, end, value, skip }) {
   };
 
   return (
-    <div className="ProgressBar">
-      <progress
+    <ProgressBarContainer>
+      {/* <progress
         className="Progress"
         value={value}
         min={start}
         max={end}
-      ></progress>
+      ></progress> */}
 
-      <div className="ProgressSpanWrapper" ref={elRef} onClick={onSkip}>
-        <span
+      <ProgressBar ref={elRef} onClick={onSkip}>
+        <ProgressBarPlayed
           className="ProgressSpan"
           onClick={onSkip}
           style={{
             width: `${width}%`,
           }}
-        ></span>
-      </div>
+        ></ProgressBarPlayed>
+      </ProgressBar>
 
-      <div className="Times">
-        <span className="CurrentTime">{cur_duration_format}</span>
-        <span className="EndTime">{end_duration_format}</span>
-      </div>
-    </div>
+      <Container>
+        <ContainerCenter mWidth="800px">
+          <TimesContainer>
+            <Time>{cur_duration_format}</Time>
+            <Time>{end_duration_format}</Time>
+          </TimesContainer>
+        </ContainerCenter>
+      </Container>
+    </ProgressBarContainer>
   );
 }

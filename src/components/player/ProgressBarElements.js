@@ -1,23 +1,49 @@
 import styled from "styled-components";
 
-export const Bar = styled.div`
-  position: relative;
-  height: 3px;
+export const ProgressBarContainer = styled.div`
+  display: block;
   width: 100%;
+`;
+
+export const ProgressBar = styled.div`
+  position: relative;
+  height: 2px;
+  width: 100%;
+  max-width: 800px;
   background-color: #ccc;
-  margin-bottom: 1rem;
+  margin-bottom: 0.6rem;
+
   display: flex;
   align-items: center;
   cursor: pointer;
-  z-index: 1;
+  margin-left: auto;
+  margin-right: auto;
 
-  &::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 5px;
-    width: 50%;
-    background-color: red;
-    z-index: 2;
+  @media screen and (max-width: 800px) {
+    width: 90%;
+  }
+`;
+
+export const ProgressBarPlayed = styled.span`
+  display: block;
+  height: 4px;
+  background-color: var(--primary-color);
+`;
+
+export const TimesContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  @media screen and (max-width: 800px) {
+    width: 90%;
+  }
+`;
+export const Time = styled.span`
+  font-size: 1rem;
+  color: #fff;
+
+  @media screen and (max-width: 800px) {
+    font-size: 0.65rem;
   }
 `;
