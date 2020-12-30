@@ -110,10 +110,6 @@ export default function AudioPlayer() {
     setPlay(!play);
   };
 
-  const onStop = (e) => {
-    audioRef.current.currentTime = 0;
-  };
-
   const onAudioMetadataLoad = (e) => {
     const duration = audioRef.current.duration;
     setEndTime(duration);
@@ -124,8 +120,7 @@ export default function AudioPlayer() {
   const onAudioTimeUpdate = (e) => {
     setCurrentTime(audioRef.current.currentTime);
 
-    syncData.forEach(function (element, index, array) {
-      var el;
+    syncData.forEach(function (element, index) {
       if (
         audioRef.current.currentTime * 1000 >= element.start &&
         audioRef.current.currentTime * 1000 <= element.end
@@ -136,7 +131,6 @@ export default function AudioPlayer() {
   };
 
   const onSkipAhead = (pos) => {
-    // const pos = (e.pageX - e.target.offsetLeft) / e.target.offsetWidth;
     audioRef.current.currentTime = pos * audioRef.current.duration;
   };
 

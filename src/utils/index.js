@@ -21,7 +21,7 @@ export const createSubtitle = async (text) => {
   let x = 0;
   for (let i = 0; i < result.length; i++) {
     //cover for bug in vtt to json here
-    if (result[i].part && result[i].part.trim() != "") {
+    if (result[i].part && result[i].part.trim() !== "") {
       syncData[x] = result[i];
       x++;
     }
