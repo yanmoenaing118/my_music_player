@@ -33,12 +33,12 @@ export const AudioDetailsContainer = styled.div`
 `;
 
 export const AudioTitleContainer = styled.div`
-  color: #999;
+  color: #fff;
 `;
 
 export const AudioAlbumCoverPicture = styled.div`
   margin-right: 1rem;
-
+  position: relative;
   img {
     width: 100%;
     max-width: 200px;
@@ -135,4 +135,17 @@ export const AudioBackgroundImage = styled.img`
   object-fit: cover;
   object-position: center;
   z-index: 1;
+`;
+
+export const ImgOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0.6)
+  );
 `;

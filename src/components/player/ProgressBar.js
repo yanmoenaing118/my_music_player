@@ -1,6 +1,5 @@
 import React, { createRef } from "react";
 import format from "format-duration";
-import "./progressBar.css";
 import { Container, ContainerCenter } from "../container/Container";
 import {
   ProgressBarContainer,

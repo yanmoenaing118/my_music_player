@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const SubtitleStyle = styled.div`
+  max-width: 800px;
   padding: 24px;
   margin-left: auto;
   margin-right: auto;
