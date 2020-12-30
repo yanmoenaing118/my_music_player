@@ -14,12 +14,6 @@ export const AudioPlayerContainer = styled.div`
   align-items: center;
   width: 100%;
   z-index: 999;
-  background: rgb(0, 0, 0);
-  background: linear-gradient(
-    61deg,
-    rgba(0, 0, 0, 0.8099614845938375) 0%,
-    rgba(0, 1, 1, 0.7959558823529411) 100%
-  );
   padding: 2rem 0;
 `;
 
@@ -128,8 +122,8 @@ export const GradientBg = styled.div`
   background: radial-gradient(
     circle,
     rgba(0, 0, 0, 0.7) 0%,
-    rgba(0, 0, 0, 0.6) 51%,
-    rgba(0, 1, 1, 0.6) 100%
+    rgba(0, 0, 0, 0.85) 51%,
+    rgba(0, 1, 1, 0.85) 100%
   );
 `;
 
