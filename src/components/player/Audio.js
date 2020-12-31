@@ -44,6 +44,13 @@ import { fetchSubtitle, createSubtitle } from "../../utils";
 
 const songs = [
   {
+    title: "Pian Pian",
+    drama: "Eternal Love of Dream",
+    src: ElodAudio,
+    poster: ElodPoster,
+    subtitle: ElodSubtitle,
+  },
+  {
     title: "Only For You",
     drama: "General's Lady",
     src: MyAudio,
@@ -57,13 +64,7 @@ const songs = [
     poster: EnglishPoster,
     subtitle: EnglishSubtitle,
   },
-  {
-    title: "Pian Pian",
-    drama: "Eternal Love of Dream",
-    src: ElodAudio,
-    poster: ElodPoster,
-    subtitle: ElodSubtitle,
-  },
+
   {
     title: "Coloured Glass",
     drama: "Love and Redemption",
@@ -82,6 +83,7 @@ export default function AudioPlayer() {
   const [play, setPlay] = useState(false);
   const [syncData, setSyncData] = useState([]);
   const [subtitleText, setSubtitleText] = useState("");
+  const [bufferedWidth, setBufferedWidth] = useState(0);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentSongTitle, setCurrentSongTitle] = useState(
@@ -115,6 +117,30 @@ export default function AudioPlayer() {
     setEndTime(duration);
     setStartTime(0);
     setCurrentTime(0);
+  };
+
+  const onAudioProgress = (e) => {
+    let duration = audioRef.current.duration;
+    console.log(audioRef.current.buffered);
+    if (duration > 0) {
+      for (var i = 0; i < audioRef.current.buffered.length; i++) {
+        if (
+          audioRef.current.buffered.start(
+            audioRef.current.buffered.length - 1 - i
+          ) < audioRef.current.currentTime
+        ) {
+          const bufferedWidth =
+            (audioRef.current.buffered.end(
+              audioRef.current.buffered.length - 1 - i
+            ) /
+              duration) *
+            100;
+          console.log(bufferedWidth);
+          setBufferedWidth(bufferedWidth);
+          break;
+        }
+      }
+    }
   };
 
   const onAudioTimeUpdate = (e) => {
@@ -165,8 +191,6 @@ export default function AudioPlayer() {
       setSyncData([]);
       setCurrentIndex((prev) => prev + 1);
     }
-
-    console.log(currentIndex);
   };
 
   const prevSong = () => {
@@ -230,6 +254,7 @@ export default function AudioPlayer() {
                     className="Audio"
                     controls
                     onLoadedMetadata={onAudioMetadataLoad}
+                    onProgress={onAudioProgress}
                     onTimeUpdate={onAudioTimeUpdate}
                     onEnded={onAudioEnded}
                   ></AudioElement>
@@ -248,6 +273,7 @@ export default function AudioPlayer() {
             end={endTime}
             value={currentTime}
             skip={onSkipAhead}
+            bufferedWidth={bufferedWidth}
           />
 
           <AudioControlsContainer>

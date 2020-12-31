@@ -7,9 +7,10 @@ import {
   ProgressBarPlayed,
   TimesContainer,
   Time,
+  ProgressBarBuffered,
 } from "./ProgressBarElements";
 
-export default function Progress({ start, end, value, skip }) {
+export default function Progress({ start, end, value, skip, bufferedWidth }) {
   const end_duration_format = format(end * 1000, { leading: true });
   const cur_duration_format = format(value * 1000, { leading: true });
   const width = Math.floor((value / end) * 100);
@@ -31,6 +32,9 @@ export default function Progress({ start, end, value, skip }) {
       ></progress> */}
 
       <ProgressBar ref={elRef} onClick={onSkip}>
+        <ProgressBarBuffered
+          style={{ width: `${bufferedWidth}%` }}
+        ></ProgressBarBuffered>
         <ProgressBarPlayed
           className="ProgressSpan"
           onClick={onSkip}

@@ -7,14 +7,15 @@ export const ProgressBarContainer = styled.div`
 
 export const ProgressBar = styled.div`
   position: relative;
-  height: 2px;
+  height: 3px;
   width: 100%;
   max-width: 800px;
   background-color: #ccc;
   margin-bottom: 0.6rem;
 
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
   cursor: pointer;
   margin-left: auto;
   margin-right: auto;
@@ -26,8 +27,17 @@ export const ProgressBar = styled.div`
 
 export const ProgressBarPlayed = styled.span`
   display: block;
-  height: 4px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
   background-color: var(--primary-color);
+`;
+
+export const ProgressBarBuffered = styled.span`
+  display: block;
+  height: 100%;
+  background-color: var(--primary-color-light);
 `;
 
 export const TimesContainer = styled.div`
