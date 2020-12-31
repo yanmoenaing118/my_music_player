@@ -49,6 +49,7 @@ const songs = [
     src: ElodAudio,
     poster: ElodPoster,
     subtitle: ElodSubtitle,
+    singer: "	Dilraba Dilmurat & Silence Wang",
   },
   {
     title: "Only For You",
@@ -56,13 +57,7 @@ const songs = [
     src: MyAudio,
     poster: AudioPoster,
     subtitle: MySubtitle,
-  },
-  {
-    title: "Perfect",
-    drama: "Perfect MV",
-    src: EnglishSong,
-    poster: EnglishPoster,
-    subtitle: EnglishSubtitle,
+    singer: "Ye Xuan Qing",
   },
 
   {
@@ -71,6 +66,15 @@ const songs = [
     src: LarAudio,
     poster: LarPoster,
     subtitle: LarSubtitle,
+    singer: "Liu Yu Ning",
+  },
+  {
+    title: "Perfect",
+    drama: "Perfect MV",
+    src: EnglishSong,
+    poster: EnglishPoster,
+    subtitle: EnglishSubtitle,
+    singer: "Ed Sheeran",
   },
 ];
 
@@ -88,6 +92,9 @@ export default function AudioPlayer() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentSongTitle, setCurrentSongTitle] = useState(
     songs[currentIndex].title
+  );
+  const [currentSinger, setCurrentSinger] = useState(
+    songs[currentIndex].singer
   );
   const [currentSongDrama, setCurrentSongDrama] = useState(
     songs[currentIndex].drama
@@ -172,6 +179,7 @@ export default function AudioPlayer() {
   const nextSong = () => {
     setSubtitleText("");
     if (currentIndex >= songs.length - 1) {
+      setCurrentSinger(songs[0].singer);
       setCurrentSongTitle(songs[0].title);
       setCurrentSongDrama(songs[0].drama);
       setCurrentSong(songs[0].src);
@@ -182,6 +190,7 @@ export default function AudioPlayer() {
       setCurrentIndex(0);
     } else {
       const songIndex = currentIndex + 1;
+      setCurrentSinger(songs[songIndex].singer);
       setCurrentSongTitle(songs[songIndex].title);
       setCurrentSongDrama(songs[songIndex].drama);
       setCurrentSong(songs[songIndex].src);
@@ -197,6 +206,7 @@ export default function AudioPlayer() {
     setSubtitleText("");
     if (currentIndex > 0) {
       const songIndex = currentIndex - 1;
+      setCurrentSinger(songs[songIndex].singer);
       setCurrentSongTitle(songs[songIndex].title);
       setCurrentSongDrama(songs[songIndex].drama);
       setCurrentSong(songs[songIndex].src);
@@ -206,6 +216,7 @@ export default function AudioPlayer() {
       setSyncData([]);
       setCurrentIndex((prev) => prev - 1);
     } else {
+      setCurrentSinger(songs[songs.length - 1].singer);
       setCurrentSongTitle(songs[songs.length - 1].title);
       setCurrentSongDrama(songs[songs.length - 1].drama);
       setCurrentSong(songs[songs.length - 1].src);
@@ -261,7 +272,7 @@ export default function AudioPlayer() {
 
                   <AudioTitle>{currentSongTitle}</AudioTitle>
                   <AudioArtist>
-                    Sang by Ye Xuan Qing - {currentSongDrama}
+                    Sang by {currentSinger} - {currentSongDrama}
                   </AudioArtist>
                 </AudioTitleContainer>
               </AudioDetailsContainer>
