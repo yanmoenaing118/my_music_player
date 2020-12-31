@@ -57,3 +57,12 @@ export const Time = styled.span`
     font-size: 0.65rem;
   }
 `;
+
+export const ThatTime = styled.div`
+  position: fixed;
+  bottom: 125px;
+  left: 0;
+  transform: translateX(-50%);
+  z-index: 5000;
+  color: #fff;
+`;
