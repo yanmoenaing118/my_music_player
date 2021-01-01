@@ -65,4 +65,9 @@ export const ThatTime = styled.div`
   transform: translateX(-50%);
   z-index: 5000;
   color: #fff;
+  font-size: 0.8rem;
+
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
 `;

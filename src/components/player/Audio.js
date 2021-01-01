@@ -43,6 +43,10 @@ export default function AudioPlayer() {
   const [bufferedWidth, setBufferedWidth] = useState(0);
 
   const onPausePlay = (e) => {
+    /**
+     * change the play button state depending upon the play state
+     * toggle the play state by checking if the audio is playing or not
+     */
     if (audioRef.current.paused || audioRef.current.ended) {
       audioRef.current.play();
       setPlay(true);
@@ -50,20 +54,38 @@ export default function AudioPlayer() {
       audioRef.current.pause();
       setPlay(false);
     }
-
     setPlay(!play);
   };
 
   const onAudioMetadataLoad = (e) => {
+    /**
+     * if the audio's metadata has been loaded
+     * set duration, startTime, endTime of the audio
+     */
     const duration = audioRef.current.duration;
     setEndTime(duration);
     setStartTime(0);
     setCurrentTime(0);
+    if (audioRef.current.paused) {
+      audioRef.current.play();
+    }
+  };
+
+  const onAudioCanPlay = (e) => {
+    /**
+     * if there is enought data to begin playing the audio
+     * play the audio and set play state to true
+     */
+    audioRef.current.play();
+    setPlay(true);
   };
 
   const onAudioProgress = (e) => {
+    /**
+     * show the user until where they can play the audio without waiting
+     */
     let duration = audioRef.current.duration;
-    console.log(audioRef.current.buffered);
+
     if (duration > 0) {
       for (var i = 0; i < audioRef.current.buffered.length; i++) {
         if (
@@ -77,7 +99,9 @@ export default function AudioPlayer() {
             ) /
               duration) *
             100;
-          console.log(bufferedWidth);
+          /**
+           * set the buffer downloaded
+           */
           setBufferedWidth(bufferedWidth);
           break;
         }
@@ -86,6 +110,9 @@ export default function AudioPlayer() {
   };
 
   const onAudioTimeUpdate = (e) => {
+    /**
+     * sync the subtitle with audio's currentTime
+     */
     setCurrentTime(audioRef.current.currentTime);
 
     syncData.forEach(function (element, index) {
@@ -99,14 +126,30 @@ export default function AudioPlayer() {
   };
 
   const onSkipAhead = (pos) => {
+    /**
+     * skip to position where the user click
+     */
     audioRef.current.currentTime = pos * audioRef.current.duration;
   };
 
   const onAudioEnded = () => {
+    console.log("ended");
+    /**
+     * if the audio has ended, stop the player and increment the current index to begin playing the next song
+     */
+    setSubtitleText("");
     stopPlayer();
+    if (currentIndex >= songs.length - 1) {
+      setCurrentIndex(0);
+    } else {
+      setCurrentIndex((prev) => currentIndex + 1);
+    }
   };
 
   const stopPlayer = () => {
+    /**
+     * stop when audio ends by setting currentTime to 0
+     */
     audioRef.current.currentTime = 0;
     setPlay(false);
   };
@@ -138,6 +181,9 @@ export default function AudioPlayer() {
   };
 
   useEffect(() => {
+    /**
+     * if the current song has changed, fetch the subtitle for new song
+     */
     fetchSubtitle(currentSong.subtitle)
       .then(createSubtitle)
       .then((data) => {
@@ -146,6 +192,9 @@ export default function AudioPlayer() {
   }, [currentSong.subtitle]);
 
   useEffect(() => {
+    /**
+     * hide the browser's default audio controls
+     */
     audioRef.current.controls = false;
   }, [audioRef]);
   return (
@@ -172,6 +221,7 @@ export default function AudioPlayer() {
                     className="Audio"
                     controls
                     onLoadedMetadata={onAudioMetadataLoad}
+                    onCanPlay={onAudioCanPlay}
                     onProgress={onAudioProgress}
                     onTimeUpdate={onAudioTimeUpdate}
                     onEnded={onAudioEnded}

@@ -17,7 +17,7 @@ export default function Progress({ start, end, value, skip, bufferedWidth }) {
   const width = Math.floor((value / end) * 100);
   const elRef = createRef();
 
-  const [thatTime, setThatTime] = useState(0);
+  const [thatTime, setThatTime] = useState("00:00");
   const [thatTimePosition, setThatTimePosition] = useState(0);
   const [showTimePosition, setShowTimePosition] = useState(false);
 
