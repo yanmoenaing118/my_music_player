@@ -152,29 +152,22 @@ export default function AudioPlayer() {
   };
 
   const nextSong = () => {
-    setSubtitleText("");
-    if (currentIndex >= songs.length - 1) {
-      setPlay(false);
-      setSyncData([]);
-      setCurrentIndex(0);
-    } else {
-      setPlay(false);
-      setSyncData([]);
-      setCurrentIndex((prev) => prev + 1);
-    }
+    resetStates();
+    let songIndex = currentIndex >= songs.length - 1 ? 0 : currentIndex + 1;
+    setCurrentIndex(songIndex);
   };
 
   const prevSong = () => {
+    resetStates();
+    let songIndex = currentIndex > 0 ? currentIndex - 1 : songs.length - 1;
+    setCurrentIndex(songIndex);
+  };
+
+  const resetStates = () => {
+    setPlay(false);
+    setSyncData([]);
     setSubtitleText("");
-    if (currentIndex > 0) {
-      setPlay(false);
-      setSyncData([]);
-      setCurrentIndex((prev) => prev - 1);
-    } else {
-      setPlay(false);
-      setSyncData([]);
-      setCurrentIndex(songs.length - 1);
-    }
+    setBufferedWidth(0);
   };
 
   useEffect(() => {
