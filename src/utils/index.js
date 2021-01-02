@@ -1,12 +1,3 @@
-/**
- * WARNING CopyRight
- * The original author of this code is not me.
- *
- * I just made some modification to adjust the needs of my app.
- *
- * Original Author => https://github.com/the-codepunker/audio-sync-with-text
- */
-
 import converVttToJson from "vtt-json";
 
 export const fetchSubtitle = async (url) => {

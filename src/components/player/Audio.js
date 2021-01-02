@@ -66,9 +66,6 @@ export default function AudioPlayer() {
     setEndTime(duration);
     setStartTime(0);
     setCurrentTime(0);
-    if (audioRef.current.paused) {
-      audioRef.current.play();
-    }
   };
 
   const onAudioCanPlay = (e) => {

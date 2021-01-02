@@ -143,9 +143,10 @@ export const ImgOverlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
+  border-radius: 10px;
   background-image: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.3),
-    rgba(0, 0, 0, 0.6)
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.8)
   );
 `;
