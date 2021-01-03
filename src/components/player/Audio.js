@@ -27,6 +27,7 @@ import {
 import Subtitle from "./Subtitle";
 import { fetchSubtitle, createSubtitle } from "../../utils";
 import { useSelector } from "react-redux";
+import Loading from "./Loading";
 
 export default function AudioPlayer() {
   const audioRef = createRef();
@@ -38,6 +39,7 @@ export default function AudioPlayer() {
   const [endTime, setEndTime] = useState(4);
   const [currentTime, setCurrentTime] = useState(0);
   const [play, setPlay] = useState(false);
+  const [waiting, setWaiting] = useState(false);
   const [syncData, setSyncData] = useState([]);
   const [subtitleText, setSubtitleText] = useState("");
   const [bufferedWidth, setBufferedWidth] = useState(0);
@@ -69,16 +71,19 @@ export default function AudioPlayer() {
   };
 
   const onAudioCanPlay = (e) => {
+    console.log("canplay");
     /**
      * if there is enought data to begin playing the audio
      * play the audio and set play state to true
      */
     audioRef.current.play();
+    setWaiting(false);
     setPlay(true);
   };
 
   const onAudioWaiting = (e) => {
     console.log("waiting...");
+    setWaiting(true);
   };
 
   const onAudioProgress = (e) => {
@@ -168,6 +173,7 @@ export default function AudioPlayer() {
   };
 
   const resetStates = () => {
+    setWaiting(false);
     setPlay(false);
     setSyncData([]);
     setSubtitleText("");
@@ -194,6 +200,7 @@ export default function AudioPlayer() {
   return (
     <Container pad="0px">
       <ContainerCenter mWidth="100%">
+        {waiting && <Loading />}
         <AudioBackgroundImageWrapper className="AudioPoster">
           <GradientBg></GradientBg>
           <AudioBackgroundImage src={currentSong.poster} alt="Poster" />
