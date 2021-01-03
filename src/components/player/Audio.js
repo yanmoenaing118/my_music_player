@@ -77,8 +77,8 @@ export default function AudioPlayer() {
     setPlay(true);
   };
 
-  const onAudioPause = (e) => {
-    console.log("loading...");
+  const onAudioWaiting = (e) => {
+    console.log("waiting...");
   };
 
   const onAudioProgress = (e) => {
@@ -217,7 +217,7 @@ export default function AudioPlayer() {
                     controls
                     onLoadedMetadata={onAudioMetadataLoad}
                     onCanPlay={onAudioCanPlay}
-                    onPause={onAudioPause}
+                    onWaiting={onAudioWaiting}
                     onProgress={onAudioProgress}
                     onTimeUpdate={onAudioTimeUpdate}
                     onEnded={onAudioEnded}

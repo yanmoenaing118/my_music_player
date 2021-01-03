@@ -17,4 +17,9 @@ const audioEvent = {
 
   progress:
     "Sent periodically to inform interested parties of progress downloading the media. Information about the current amount of the media that has been downloaded is available in the media element's buffered attribute.",
+  timeupdate:
+    "The time indicated by the currentTime attribute has been updated",
+  volumechange: "The volume has changed",
+
+  waiting: "Playback has stopped because of a temporary lack of data",
 };
