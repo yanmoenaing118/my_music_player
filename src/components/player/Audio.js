@@ -77,6 +77,10 @@ export default function AudioPlayer() {
     setPlay(true);
   };
 
+  const onAudioPause = (e) => {
+    console.log("loading...");
+  };
+
   const onAudioProgress = (e) => {
     /**
      * show the user until where they can play the audio without waiting
@@ -122,6 +126,10 @@ export default function AudioPlayer() {
     });
   };
 
+  const onAudioSeek = (e) => {
+    console.log(e.target.duration);
+  };
+
   const onSkipAhead = (pos) => {
     /**
      * skip to position where the user click
@@ -134,13 +142,9 @@ export default function AudioPlayer() {
     /**
      * if the audio has ended, stop the player and increment the current index to begin playing the next song
      */
-    setSubtitleText("");
     stopPlayer();
-    if (currentIndex >= songs.length - 1) {
-      setCurrentIndex(0);
-    } else {
-      setCurrentIndex((prev) => currentIndex + 1);
-    }
+    const songIndex = currentIndex >= songs.length - 1 ? 0 : currentIndex + 1;
+    setCurrentIndex(songIndex);
   };
 
   const stopPlayer = () => {
@@ -148,7 +152,7 @@ export default function AudioPlayer() {
      * stop when audio ends by setting currentTime to 0
      */
     audioRef.current.currentTime = 0;
-    setPlay(false);
+    resetStates();
   };
 
   const nextSong = () => {
@@ -186,7 +190,7 @@ export default function AudioPlayer() {
      * hide the browser's default audio controls
      */
     audioRef.current.controls = false;
-  }, [audioRef]);
+  });
   return (
     <Container pad="0px">
       <ContainerCenter mWidth="100%">
@@ -208,13 +212,16 @@ export default function AudioPlayer() {
                     ref={audioRef}
                     src={currentSong.src}
                     preload="metadata"
+                    type="audio/mpeg"
                     className="Audio"
                     controls
                     onLoadedMetadata={onAudioMetadataLoad}
                     onCanPlay={onAudioCanPlay}
+                    onPause={onAudioPause}
                     onProgress={onAudioProgress}
                     onTimeUpdate={onAudioTimeUpdate}
                     onEnded={onAudioEnded}
+                    onSeeked={onAudioSeek}
                   ></AudioElement>
 
                   <AudioTitle>{currentSong.title}</AudioTitle>

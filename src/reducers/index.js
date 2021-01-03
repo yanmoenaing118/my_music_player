@@ -56,7 +56,11 @@ const initialState = {
 const songsSlice = createSlice({
   name: "songs",
   initialState,
-  reducers: {},
+  reducers: {
+    setBgImage: (state, action) => {
+      state.bgImage = action.payload;
+    },
+  },
 });
 
 export default songsSlice.reducer;
