@@ -7,7 +7,7 @@ export const PlayListContainer = styled.div`
   width: 100%;
   z-index: 4444;
   transition: all 0.3s ease-in;
-  top: ${({ open }) => (open ? 0 : `-50vh`)};
+  top: ${({ open }) => (open ? 0 : `-100vh`)};
 
   background-color: #000;
   display: flex;

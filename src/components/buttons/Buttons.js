@@ -30,4 +30,8 @@ export const ClosePlayListBtn = styled.button`
   padding: 0.8rem 0;
   cursor: pointer;
   background-color: #000;
+
+  @media screen and (max-width: 480px) {
+    padding: 0.4rem 0;
+  }
 `;
