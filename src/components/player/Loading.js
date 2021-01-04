@@ -14,10 +14,10 @@ const LoadingContainer = styled.div`
 `;
 
 const Circle1 = styled.div`
-  --sz: 4.5vmin;
+  --sz: 20px;
   --tX: 0;
   --animation: 700ms cubic-bezier(0.3, 0.5, 0.4, 0.9) infinite alternate-reverse;
-  --hm: 4.5vmin;
+  --hm: 20px;
   height: var(--sz);
   width: var(--sz);
   background-image: var(--bg);
@@ -32,13 +32,18 @@ const Circle1 = styled.div`
       transform: translateX(calc(var(--sz) + calc(var(--hm) / 4)));
     }
   }
+
+  @media screen and (max-width: 480px) {
+    --sz: 15px;
+    --hm: 15px;
+  }
 `;
 
 const Circle2 = styled.div`
-  --sz: 4.5vmin;
+  --sz: 20px;
   --tX: 0;
   --animation: 700ms cubic-bezier(0.3, 0.5, 0.4, 0.9) infinite alternate-reverse;
-  --hm: 4.5vmin;
+  --hm: 20px;
   height: var(--sz);
   width: var(--sz);
   background-image: var(--bg);
@@ -52,6 +57,11 @@ const Circle2 = styled.div`
     to {
       transform: translateX(calc(var(--sz) * -1 - calc(var(--hm) / 4)));
     }
+  }
+
+  @media screen and (max-width: 480px) {
+    --sz: 15px;
+    --hm: 15px;
   }
 `;
 

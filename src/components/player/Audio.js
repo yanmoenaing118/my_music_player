@@ -7,6 +7,7 @@ import {
   MdPauseCircleOutline,
   MdSkipNext,
   MdSkipPrevious,
+  MdRepeat,
 } from "react-icons/md";
 
 import {
@@ -70,8 +71,7 @@ export default function AudioPlayer() {
     setCurrentTime(0);
   };
 
-  const onAudioCanPlay = (e) => {
-    console.log("canplay");
+  const onAudioCanPlay = () => {
     /**
      * if there is enought data to begin playing the audio
      * play the audio and set play state to true
@@ -81,12 +81,11 @@ export default function AudioPlayer() {
     setPlay(true);
   };
 
-  const onAudioWaiting = (e) => {
-    console.log("waiting...");
+  const onAudioWaiting = () => {
     setWaiting(true);
   };
 
-  const onAudioProgress = (e) => {
+  const onAudioProgress = () => {
     /**
      * show the user until where they can play the audio without waiting
      */
@@ -131,10 +130,6 @@ export default function AudioPlayer() {
     });
   };
 
-  const onAudioSeek = (e) => {
-    console.log(e.target.duration);
-  };
-
   const onSkipAhead = (pos) => {
     /**
      * skip to position where the user click
@@ -143,7 +138,6 @@ export default function AudioPlayer() {
   };
 
   const onAudioEnded = () => {
-    console.log("ended");
     /**
      * if the audio has ended, stop the player and increment the current index to begin playing the next song
      */
@@ -228,7 +222,6 @@ export default function AudioPlayer() {
                     onProgress={onAudioProgress}
                     onTimeUpdate={onAudioTimeUpdate}
                     onEnded={onAudioEnded}
-                    onSeeked={onAudioSeek}
                   ></AudioElement>
 
                   <AudioTitle>{currentSong.title}</AudioTitle>
@@ -249,6 +242,9 @@ export default function AudioPlayer() {
           />
 
           <AudioControlsContainer>
+            <AudioControlBtn small={true}>
+              <MdRepeat size="75%" />
+            </AudioControlBtn>
             <AudioControlBtn small={true} onClick={prevSong}>
               <MdSkipPrevious size="85%" />
             </AudioControlBtn>
