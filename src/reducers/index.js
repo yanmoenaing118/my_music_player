@@ -16,6 +16,10 @@ import ColouredGlassSrc from "./../audio/coloured_glass.mp3";
 import ColouredGlassSubtitle from "./../audio/coloured_glass.vtt";
 import ColouredGlassPoster from "./../images/coloured_glass.jpeg";
 
+import MoonlightDrawnByCloudGlassSrc from "./../audio/moonlight_drawn_by_clouds.mp3";
+import MoonlightDrawnByCloudGlassSubtitle from "./../audio/moonlight_drawn_by_clouds.vtt";
+import MoonlightDrawnByCloudGlassPoster from "./../images/moonlight_drawn_by_clouds.jpg";
+
 const initialState = {
   songs: [
     {
@@ -47,6 +51,15 @@ const initialState = {
     },
     {
       id: 4,
+      title: "Moonlight Drawn By Cloud",
+      drama: "Love In The Moonlight",
+      singer: "Someone",
+      src: MoonlightDrawnByCloudGlassSrc,
+      poster: MoonlightDrawnByCloudGlassPoster,
+      subtitle: MoonlightDrawnByCloudGlassSubtitle,
+    },
+    {
+      id: 5,
       title: "Perfect",
       drama: "Perfect MV",
       singer: "Ed Sheeran",
