@@ -19,6 +19,7 @@ import ColouredGlassPoster from "./../images/coloured_glass.jpeg";
 const initialState = {
   songs: [
     {
+      id: 1,
       title: "Pian Pian",
       drama: "Eternal Love of Dream",
       singer: "Dilraba Dilmurat & Silence Wang",
@@ -27,6 +28,7 @@ const initialState = {
       subtitle: ElodSubtitle,
     },
     {
+      id: 2,
       title: "Only For You",
       drama: "General's Lady",
       singer: "Ye Xuan Qing",
@@ -35,6 +37,7 @@ const initialState = {
       subtitle: OnlyForYouSubtitle,
     },
     {
+      id: 3,
       title: "Coloured Glass",
       drama: "Love and Redemption",
       singer: "Liu Yu Ning",
@@ -43,6 +46,7 @@ const initialState = {
       subtitle: ColouredGlassSubtitle,
     },
     {
+      id: 4,
       title: "Perfect",
       drama: "Perfect MV",
       singer: "Ed Sheeran",
@@ -51,16 +55,35 @@ const initialState = {
       subtitle: PerfectSubtitle,
     },
   ],
+
+  currentSong: {
+    title: "Pian Pian",
+    drama: "Eternal Love of Dream",
+    singer: "Dilraba Dilmurat & Silence Wang",
+    src: ElodSrc,
+    poster: ElodPoster,
+    subtitle: ElodSubtitle,
+  },
 };
 
 const songsSlice = createSlice({
   name: "songs",
   initialState,
   reducers: {
-    setBgImage: (state, action) => {
-      state.bgImage = action.payload;
+    setCurrentSong: (state, action) => {
+      const { id } = action.payload;
+
+      let song = state.songs.find((song) => song.id === id);
+
+      if (song) {
+        state.currentSong = song;
+      } else {
+        state.currentSong = state.songs[0];
+      }
     },
   },
 });
+
+export const { setCurrentSong } = songsSlice.actions;
 
 export default songsSlice.reducer;
