@@ -18,9 +18,9 @@ export default function PlayListItems() {
 
   return (
     <Items>
-      {songs.map((song) => {
+      {songs.map((song, index) => {
         return (
-          <Item key={song.id} onClick={(e) => playSong(song.id)}>
+          <Item key={song.id} onClick={(e) => playSong(index)}>
             <SongTitle>
               {song.title} - {song.drama}
             </SongTitle>

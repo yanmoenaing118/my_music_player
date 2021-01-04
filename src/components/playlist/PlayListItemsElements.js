@@ -7,8 +7,7 @@ export const PlayListItems = styled.ul`
 
 export const PlayListItem = styled.li`
   padding: 0.7rem 1rem;
-  border-bottom: 1px solid #333;
-  color: #fff;
+  border-bottom: 1px solid #eee;
   cursor: pointer;
 
   @media screen and (max-width: 480px) {
@@ -19,7 +18,7 @@ export const PlayListItem = styled.li`
 export const SongTitle = styled.p`
   font-size: 1.1rem;
   font-weight: bold;
-  color: #fff;
+  color: #333;
   @media screen and (max-width: 480px) {
     font-size: 0.9rem;
   }
@@ -28,7 +27,7 @@ export const SongTitle = styled.p`
 export const Singer = styled.p`
   font-size: 0.8rem;
   font-weight: normal;
-  color: #cde;
+  color: #777;
   @media screen and (max-width: 480px) {
     font-size: 0.7rem;
   }
