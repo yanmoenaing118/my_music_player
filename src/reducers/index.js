@@ -73,7 +73,7 @@ const songsSlice = createSlice({
     setCurrentSong: (state, action) => {
       const { id } = action.payload;
 
-      let song = state.songs.find((song) => song.id === id);
+      let song = state.songs[id];
 
       if (song) {
         state.currentSong = song;
