@@ -8,6 +8,7 @@ import {
   MdSkipNext,
   MdSkipPrevious,
   MdRepeat,
+  MdRepeatOne,
 } from "react-icons/md";
 
 import {
@@ -38,6 +39,7 @@ export default function AudioPlayer() {
   const songs = useSelector((state) => state.songs.songs);
   const currentSong = useSelector((state) => state.songs.currentSong);
 
+  const [imageLoaded, setImageLoaded] = useState(false);
   const [startTime, setStartTime] = useState(0);
   const [endTime, setEndTime] = useState(4);
   const [currentTime, setCurrentTime] = useState(0);
@@ -46,6 +48,7 @@ export default function AudioPlayer() {
   const [syncData, setSyncData] = useState([]);
   const [subtitleText, setSubtitleText] = useState("");
   const [bufferedWidth, setBufferedWidth] = useState(0);
+  const [loopOneSong, setLoopOneSong] = useState(false);
 
   const onPausePlay = (e) => {
     /**
@@ -144,7 +147,11 @@ export default function AudioPlayer() {
      * if the audio has ended, stop the player and increment the current index to begin playing the next song
      */
     stopPlayer();
-    const songIndex = currentIndex >= songs.length - 1 ? 0 : currentIndex + 1;
+    const songIndex = setLoopOneSong
+      ? currentIndex
+      : currentIndex >= songs.length - 1
+      ? 0
+      : currentIndex + 1;
     setCurrentIndex(songIndex);
   };
 
@@ -195,7 +202,12 @@ export default function AudioPlayer() {
         {waiting && <Loading />}
         <AudioBackgroundImageWrapper className="AudioPoster">
           <GradientBg></GradientBg>
-          <AudioBackgroundImage src={currentSong.poster} alt="Poster" />
+          <AudioBackgroundImage
+            src={currentSong.poster}
+            alt="Poster"
+            style={{ display: imageLoaded ? "block" : "none" }}
+            onLoad={(e) => setImageLoaded(true)}
+          />
         </AudioBackgroundImageWrapper>
         <Subtitle subtitleText={subtitleText} />
         <AudioPlayerContainer>
@@ -240,7 +252,17 @@ export default function AudioPlayer() {
 
           <AudioControlsContainer>
             <AudioControlBtn small={true}>
-              <MdRepeat size="75%" />
+              {loopOneSong ? (
+                <MdRepeatOne
+                  size="75%"
+                  onClick={(e) => setLoopOneSong(!loopOneSong)}
+                />
+              ) : (
+                <MdRepeat
+                  size="75%"
+                  onClick={(e) => setLoopOneSong(!loopOneSong)}
+                />
+              )}
             </AudioControlBtn>
             <AudioControlBtn small={true} onClick={prevSong}>
               <MdSkipPrevious size="85%" />
