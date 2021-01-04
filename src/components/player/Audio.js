@@ -178,6 +178,7 @@ export default function AudioPlayer() {
   };
 
   const resetStates = () => {
+    setImageLoaded(false);
     setWaiting(false);
     setPlay(false);
     setSyncData([]);
