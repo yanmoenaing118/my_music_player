@@ -27,14 +27,16 @@ import {
 } from "./AudioElements";
 import Subtitle from "./Subtitle";
 import { fetchSubtitle, createSubtitle } from "../../utils";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Loading from "./Loading";
+import { setCurrentSong } from "../../reducers";
 
 export default function AudioPlayer() {
   const audioRef = createRef();
+  const dispatch = useDispatch();
   const [currentIndex, setCurrentIndex] = useState(0);
   const songs = useSelector((state) => state.songs.songs);
-  const currentSong = useSelector((state) => state.songs.songs[currentIndex]);
+  const currentSong = useSelector((state) => state.songs.currentSong);
 
   const [startTime, setStartTime] = useState(0);
   const [endTime, setEndTime] = useState(4);
@@ -157,12 +159,14 @@ export default function AudioPlayer() {
   const nextSong = () => {
     resetStates();
     let songIndex = currentIndex >= songs.length - 1 ? 0 : currentIndex + 1;
+    dispatch(setCurrentSong({ id: songIndex }));
     setCurrentIndex(songIndex);
   };
 
   const prevSong = () => {
     resetStates();
     let songIndex = currentIndex > 0 ? currentIndex - 1 : songs.length - 1;
+    dispatch(setCurrentSong({ id: songIndex }));
     setCurrentIndex(songIndex);
   };
 
@@ -185,12 +189,6 @@ export default function AudioPlayer() {
       });
   }, [currentSong.subtitle]);
 
-  useEffect(() => {
-    /**
-     * hide the browser's default audio controls
-     */
-    audioRef.current.controls = false;
-  });
   return (
     <Container pad="0px">
       <ContainerCenter mWidth="100%">
@@ -215,7 +213,6 @@ export default function AudioPlayer() {
                     preload="metadata"
                     type="audio/mpeg"
                     className="Audio"
-                    controls
                     onLoadedMetadata={onAudioMetadataLoad}
                     onCanPlay={onAudioCanPlay}
                     onWaiting={onAudioWaiting}
