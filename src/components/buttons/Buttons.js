@@ -21,15 +21,15 @@ export const ClosePlayListBtn = styled.button`
   border: none;
   outline: none;
   background: none;
-  color: #fff;
+  color: #000;
   font-size: 1.2rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #eee;
   padding: 0.8rem 0;
   cursor: pointer;
-  background-color: #000;
+  background-color: #fff;
 
   @media screen and (max-width: 480px) {
     padding: 0.4rem 0;
