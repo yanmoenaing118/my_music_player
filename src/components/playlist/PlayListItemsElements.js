@@ -20,7 +20,7 @@ export const SongTitle = styled.p`
   font-weight: bold;
   color: #333;
   @media screen and (max-width: 480px) {
-    font-size: 0.9rem;
+    font-size: 0.7rem;
   }
 `;
 
@@ -29,6 +29,6 @@ export const Singer = styled.p`
   font-weight: normal;
   color: #777;
   @media screen and (max-width: 480px) {
-    font-size: 0.7rem;
+    font-size: 0.45rem;
   }
 `;

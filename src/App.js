@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import { Container, ContainerCenter } from "./components/container/Container";
-import Audio from "./components/player/Audio";
+import Audio from "./components/player/Audio/Audio";
 import PlayList from "./components/playlist/PlayList";
 import {
   OpenPlayListBtn,
@@ -12,16 +12,13 @@ import { BsMusicNoteList } from "react-icons/bs";
 function App() {
   const [showPlayList, setShowPlayList] = useState(false);
 
-  const openPlayList = (e) => {
-    console.log("play");
+  const openPlayList = () => {
     setShowPlayList(true);
   };
-  const closePlayList = (e) => {
-    console.log("close");
+  const closePlayList = () => {
     setShowPlayList(false);
   };
 
-  console.log(showPlayList);
   return (
     <div className="App">
       <Container>

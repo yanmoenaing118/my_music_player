@@ -1,6 +1,6 @@
 import React, { createRef, useState } from "react";
 import format from "format-duration";
-import { Container, ContainerCenter } from "../container/Container";
+import { Container, ContainerCenter } from "../../container/Container";
 import {
   ProgressBarContainer,
   ProgressBar,
