@@ -69,34 +69,36 @@ const initialState = {
     },
   ],
 
-  currentSong: {
-    title: "Pian Pian",
-    drama: "Eternal Love of Dream",
-    singer: "Dilraba Dilmurat & Silence Wang",
-    src: ElodSrc,
-    poster: ElodPoster,
-    subtitle: ElodSubtitle,
-  },
+  currentSongIndex: 0,
 };
 
 const songsSlice = createSlice({
   name: "songs",
   initialState,
   reducers: {
-    setCurrentSong: (state, action) => {
-      const { id } = action.payload;
-
-      let song = state.songs[id];
-
-      if (song) {
-        state.currentSong = song;
+    setNextSong: (state) => {
+      if (state.currentSongIndex >= state.songs.length - 1) {
+        state.currentSongIndex = 0;
       } else {
-        state.currentSong = state.songs[0];
+        state.currentSongIndex = state.currentSongIndex + 1;
       }
+    },
+    setPrevSong: (state) => {
+      if (state.currentSongIndex <= 0) {
+        state.currentSongIndex = state.songs.length - 1;
+      } else {
+        state.currentSongIndex = state.currentSongIndex - 1;
+      }
+    },
+
+    setSongByIndex: (state, action) => {
+      state.currentSongIndex = action.payload;
     },
   },
 });
 
-export const { setCurrentSong } = songsSlice.actions;
+export const { setNextSong, setPrevSong, setSongByIndex } = songsSlice.actions;
+
+export const getSongByIndex = (state, index) => state.songs.songs[index];
 
 export default songsSlice.reducer;
