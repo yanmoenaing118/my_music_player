@@ -10,6 +10,8 @@ export const PlayListItem = styled.li`
   border-bottom: 1px solid #eee;
   cursor: pointer;
 
+  line-height: 1.6;
+
   @media screen and (max-width: 480px) {
     padding: 0.5rem 0.4rem;
   }
@@ -20,7 +22,7 @@ export const SongTitle = styled.p`
   font-weight: bold;
   color: #333;
   @media screen and (max-width: 480px) {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
   }
 `;
 
@@ -29,6 +31,6 @@ export const Singer = styled.p`
   font-weight: normal;
   color: #777;
   @media screen and (max-width: 480px) {
-    font-size: 0.45rem;
+    font-size: 0.65rem;
   }
 `;

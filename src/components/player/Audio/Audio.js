@@ -22,7 +22,6 @@ export default function AudioPlayer() {
     getSongByIndex(state, currentIndex)
   );
 
-  const [imageLoaded, setImageLoaded] = useState(false);
   const [startTime, setStartTime] = useState(0);
   const [endTime, setEndTime] = useState(4);
   const [currentTime, setCurrentTime] = useState(0);
@@ -45,7 +44,12 @@ export default function AudioPlayer() {
       audioRef.current.pause();
       setPlay(false);
     }
-    setPlay(!play);
+    // setPlay(!play);
+  };
+
+  const onAudioLoadedData = () => {
+    audioRef.current.play();
+    setPlay(true);
   };
 
   const onAudioMetadataLoad = (e) => {
@@ -59,6 +63,10 @@ export default function AudioPlayer() {
     setCurrentTime(0);
   };
 
+  const onAudioPlay = () => {
+    setPlay(true);
+  };
+
   const onAudioCanPlay = () => {
     /**
      * if there is enought data to begin playing the audio
@@ -66,7 +74,7 @@ export default function AudioPlayer() {
      */
     audioRef.current.play();
     setWaiting(false);
-    setPlay(true);
+    // setPlay(true);
   };
 
   const onAudioWaiting = () => {
@@ -138,7 +146,7 @@ export default function AudioPlayer() {
       return;
     }
 
-    resetStates({ replayCurrent: false });
+    resetStates();
     dispatch(setNextSong());
   };
 
@@ -152,20 +160,17 @@ export default function AudioPlayer() {
 
   const nextSong = () => {
     // (**) reset is needed to clear out all of the states for current song
-    resetStates({ replayCurrent: false });
+    resetStates();
     dispatch(setNextSong());
   };
 
   const prevSong = () => {
     // (**) reset is needed to clear out all of the states for current song
-    resetStates({ replayCurrent: false });
+    resetStates();
     dispatch(setPrevSong());
   };
 
-  const resetStates = ({ replayCurrent }) => {
-    if (!replayCurrent) {
-      setImageLoaded(false);
-    }
+  const resetStates = () => {
     setWaiting(false);
     setPlay(false);
     setSyncData([]);
@@ -177,22 +182,19 @@ export default function AudioPlayer() {
     /**
      * if the current song has changed, fetch the subtitle for new song
      */
+    resetStates();
     fetchSubtitle(currentSong.subtitle)
       .then(createSubtitle)
       .then((data) => {
         setSyncData(data);
       });
-  }, [currentSong.subtitle]);
+  }, [currentSong]);
 
   return (
     <Container pad="0px">
       <ContainerCenter mWidth="100%">
         {waiting && <Loading />}
-        <AudioBackgroundImage
-          currentPoster={currentSong.poster}
-          imageLoaded={imageLoaded}
-          setImageLoaded={setImageLoaded}
-        />
+        <AudioBackgroundImage currentPoster={currentSong.poster} />
         <Subtitle subtitleText={subtitleText} />
         <AudioPlayerContainer>
           <AudioDetails
@@ -208,6 +210,8 @@ export default function AudioPlayer() {
             onAudioWaiting={onAudioWaiting}
             onAudioProgress={onAudioProgress}
             onAudioTimeUpdate={onAudioTimeUpdate}
+            onAudioPlay={onAudioPlay}
+            onAudioLoadedData={onAudioLoadedData}
           />
 
           <ProgressBar

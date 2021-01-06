@@ -4,10 +4,6 @@ import OnlyForYouSrc from "./../audio/for_one_person.mp3";
 import OnlyForYouSubtitle from "./../audio/for_one_person.vtt";
 import OnlyForYouPoster from "./../images/general_lady_2.jpg";
 
-import PerfectSrc from "./../audio/perfect.mp3";
-import PerfectSubtitle from "./../audio/perfect.vtt";
-import PerfectPoster from "./../images/perfect.jpg";
-
 import ElodSrc from "./../audio/elod.mp3";
 import ElodSubtitle from "./../audio/elod.vtt";
 import ElodPoster from "./../images/elod.png";
@@ -19,6 +15,10 @@ import ColouredGlassPoster from "./../images/coloured_glass.jpeg";
 import MoonlightDrawnByCloudGlassSrc from "./../audio/moonlight_drawn_by_clouds.mp3";
 import MoonlightDrawnByCloudGlassSubtitle from "./../audio/moonlight_drawn_by_clouds.vtt";
 import MoonlightDrawnByCloudGlassPoster from "./../images/moonlight_drawn_by_clouds.jpg";
+
+import HereIAmAgainSrc from "./../audio/here_i_am_again.mp3";
+import HereIAmAgainSubtitle from "./../audio/here_i_am_again.vtt";
+import HereIAmAgainPoster from "./../images/cloy.jpg";
 
 const initialState = {
   songs: [
@@ -60,23 +60,29 @@ const initialState = {
     },
     {
       id: 5,
-      title: "Perfect",
-      drama: "Perfect MV",
-      singer: "Ed Sheeran",
-      src: PerfectSrc,
-      poster: PerfectPoster,
-      subtitle: PerfectSubtitle,
+      title: "Here I am again",
+      drama: "Desentant Of The Sun",
+      singer: "Davichi",
+      src: HereIAmAgainSrc,
+      poster: HereIAmAgainPoster,
+      subtitle: HereIAmAgainSubtitle,
     },
   ],
 
   currentSongIndex: 0,
+
+  imageLoaded: false,
 };
 
 const songsSlice = createSlice({
   name: "songs",
   initialState,
   reducers: {
+    setImageLoaded: (state, action) => {
+      state.imageLoaded = action.payload;
+    },
     setNextSong: (state) => {
+      state.imageLoaded = false;
       if (state.currentSongIndex >= state.songs.length - 1) {
         state.currentSongIndex = 0;
       } else {
@@ -84,6 +90,7 @@ const songsSlice = createSlice({
       }
     },
     setPrevSong: (state) => {
+      state.imageLoaded = false;
       if (state.currentSongIndex <= 0) {
         state.currentSongIndex = state.songs.length - 1;
       } else {
@@ -92,12 +99,20 @@ const songsSlice = createSlice({
     },
 
     setSongByIndex: (state, action) => {
+      if (action.payload !== state.currentSongIndex) {
+        state.imageLoaded = false;
+      }
       state.currentSongIndex = action.payload;
     },
   },
 });
 
-export const { setNextSong, setPrevSong, setSongByIndex } = songsSlice.actions;
+export const {
+  setImageLoaded,
+  setNextSong,
+  setPrevSong,
+  setSongByIndex,
+} = songsSlice.actions;
 
 export const getSongByIndex = (state, index) => state.songs.songs[index];
 

@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Container, ContainerCenter } from "./../../../container/Container";
 import {
   AudioTitleContainer,
@@ -23,13 +24,21 @@ export default function AudioDetails({
   onAudioWaiting,
   onAudioProgress,
   onAudioTimeUpdate,
+  onAudioPlay,
+  onAudioLoadedData,
 }) {
+  const imageLoaded = useSelector((state) => state.songs.imageLoaded);
+
   return (
     <Container mb="10px">
       <ContainerCenter mWidth="800px">
         <AudioDetailsContainer>
           <AudioAlbumCoverPicture>
-            <img src={currentPoster} alt="Album Cover" />
+            <img
+              src={currentPoster}
+              alt="Album Cover"
+              style={{ opacity: imageLoaded ? 1 : 0 }}
+            />
             <ImgOverlay></ImgOverlay>
           </AudioAlbumCoverPicture>
           <AudioTitleContainer>
@@ -45,6 +54,9 @@ export default function AudioDetails({
               onProgress={onAudioProgress}
               onTimeUpdate={onAudioTimeUpdate}
               onEnded={onAudioEnded}
+              onPlay={onAudioPlay}
+              onLoadedData={onAudioLoadedData}
+              autoPlay={true}
             ></AudioElement>
 
             <AudioTitle>{title}</AudioTitle>

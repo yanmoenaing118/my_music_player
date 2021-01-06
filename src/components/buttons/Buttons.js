@@ -24,10 +24,12 @@ export const ClosePlayListBtn = styled.button`
   color: #000;
   font-size: 1.2rem;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+
   align-items: center;
   border-bottom: 1px solid #eee;
   padding: 0.8rem 0;
+  padding-right: 0.8rem;
   cursor: pointer;
   background-color: #fff;
 

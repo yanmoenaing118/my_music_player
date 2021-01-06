@@ -1,5 +1,7 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { setImageLoaded } from "./../../../../reducers";
 
 const BackgroundImageWrapper = styled.div`
   position: fixed;
@@ -33,21 +35,22 @@ const BackgroundImage = styled.img`
   object-fit: cover;
   object-position: center;
   z-index: 1;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.2s ease;
 `;
 
-export default function AudioBackgroundImage({
-  currentPoster,
-  imageLoaded,
-  setImageLoaded,
-}) {
+export default function AudioBackgroundImage({ currentPoster }) {
+  const dispatch = useDispatch();
+  const imageLoaded = useSelector((state) => state.songs.imageLoaded);
   return (
     <BackgroundImageWrapper>
       <GradientBg></GradientBg>
       <BackgroundImage
         src={currentPoster}
         alt="Poster"
-        style={{ opacity: imageLoaded ? 1 : 0 }}
-        onLoad={(e) => setImageLoaded(true)}
+        style={{ opacity: imageLoaded ? 1 : 0, transform: "scale(1)" }}
+        onLoad={(e) => dispatch(setImageLoaded(true))}
       />
     </BackgroundImageWrapper>
   );

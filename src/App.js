@@ -7,7 +7,7 @@ import {
   OpenPlayListBtn,
   TogglePlayListBtnContainer,
 } from "./components/buttons/Buttons";
-import { BsMusicNoteList } from "react-icons/bs";
+import { RiPlayList2Line } from "react-icons/ri";
 
 function App() {
   const [showPlayList, setShowPlayList] = useState(false);
@@ -25,7 +25,7 @@ function App() {
         <ContainerCenter mWidth="800px">
           <TogglePlayListBtnContainer>
             <OpenPlayListBtn>
-              <BsMusicNoteList size="30px" onClick={openPlayList} />
+              <RiPlayList2Line size="30px" onClick={openPlayList} />
             </OpenPlayListBtn>
           </TogglePlayListBtnContainer>
         </ContainerCenter>

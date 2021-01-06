@@ -10,7 +10,7 @@ const LoadingContainer = styled.div`
   left: 0;
   height: 60vh;
   width: 100%;
-  z-index: 5000;
+  z-index: 4000;
 `;
 
 const Circle1 = styled.div`
