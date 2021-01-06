@@ -11,6 +11,11 @@ export const PlayListItem = styled.li`
   cursor: pointer;
 
   line-height: 1.6;
+  transition: background-color 0.1s ease-in;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
 
   @media screen and (max-width: 480px) {
     padding: 0.5rem 0.4rem;

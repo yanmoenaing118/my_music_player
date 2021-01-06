@@ -16,3 +16,17 @@ export const PlayListContainer = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+
+export const PlayListBar = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 0.4rem;
+`;
+
+export const PlayListTitle = styled.h2`
+  font-size: 1.3rem;
+  font-weight: normal;
+  color: var(--primary-color);
+`;
