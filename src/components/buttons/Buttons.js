@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const TogglePlayListBtnContainer = styled.div`
   position: absolute;
   top: 12px;
-  right: 1.3rem;
+  right: 12px;
   z-index: 4444;
 `;
 
@@ -17,23 +17,11 @@ export const OpenPlayListBtn = styled.button`
 `;
 
 export const ClosePlayListBtn = styled.button`
-  width: 100%;
+  /* width: 100%; */
   border: none;
   outline: none;
   background: none;
-  color: #000;
-  font-size: 1.2rem;
-  display: flex;
-  justify-content: flex-end;
-
-  align-items: center;
-  border-bottom: 1px solid #eee;
-  padding: 0.8rem 0;
-  padding-right: 0.8rem;
+  color: var(--primary-color);
   cursor: pointer;
   background-color: #fff;
-
-  @media screen and (max-width: 480px) {
-    padding: 0.4rem 0;
-  }
 `;
