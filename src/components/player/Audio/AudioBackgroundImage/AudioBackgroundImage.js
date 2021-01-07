@@ -21,8 +21,8 @@ const GradientBg = styled.div`
   height: 100%;
   background: radial-gradient(
     circle,
-    rgba(0, 0, 0, 0.7) 0%,
-    rgba(0, 0, 0, 0.85) 51%,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0.85) 65%,
     rgba(0, 1, 1, 0.85) 100%
   );
 `;
