@@ -1,22 +1,22 @@
 import styled from "styled-components";
 
 export const PlayListContainer = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 4444;
   transition: all 0.3s ease-in;
-  top: ${({ open }) => (open ? 0 : `-100vh`)};
+  left: ${({ open }) => (open ? 0 : `-100vw`)};
+  height: 100vh;
+  /* overflow: hidden; */
 
   background-color: #fff;
-  overflow: hidden;
+  overflow: scroll;
   display: flex;
-  justify-content: center;
+
   flex-direction: column;
   align-items: center;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
 `;
 
 export const PlayListBar = styled.div`
