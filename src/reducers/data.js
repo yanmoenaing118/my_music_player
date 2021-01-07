@@ -1,6 +1,6 @@
 import OnlyForYouSrc from "./../audio/for_one_person.mp3";
 import OnlyForYouSubtitle from "./../audio/for_one_person.vtt";
-import OnlyForYouPoster from "./../images/general_lady_2.jpg";
+import OnlyForYouPoster from "./../images/general_lady.png";
 
 import ElodSrc from "./../audio/elod.mp3";
 import ElodSubtitle from "./../audio/elod.vtt";
