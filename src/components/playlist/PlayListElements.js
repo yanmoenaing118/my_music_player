@@ -14,9 +14,13 @@ export const PlayListContainer = styled.div`
   background-color: #fff;
   overflow: scroll;
   display: flex;
-
+  width: 60%;
   flex-direction: column;
   align-items: center;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const PlayListBar = styled.div`

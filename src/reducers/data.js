@@ -20,7 +20,7 @@ import HereIAmAgainPoster from "./../images/cloy.jpg";
 
 import DoneForMeSrc from "./../audio/done_for_me.mp3";
 import DoneForMeSubtitle from "./../audio/done_for_me.vtt";
-import DoneForMePoster from "./../images/deluna.jpg";
+import DoneForMePoster from "./../images/hotel_deluna.jpg";
 
 import ThisLoveSrc from "./../audio/this_love.mp3";
 import ThisLoveSubtitle from "./../audio/this_love.vtt";
