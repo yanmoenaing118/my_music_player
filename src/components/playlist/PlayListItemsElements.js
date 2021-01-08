@@ -3,6 +3,8 @@ import styled from "styled-components";
 export const PlayListItems = styled.ul`
   list-style: none;
   width: 100%;
+  overflow-y: scroll;
+  height: 100vh;
 `;
 
 export const PlayListItem = styled.li`
@@ -14,7 +16,10 @@ export const PlayListItem = styled.li`
   transition: background-color 0.1s ease-in;
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+    & * {
+      color: #fff;
+    }
+    background-color: rgba(222, 222, 222, 0.2);
   }
 
   @media screen and (max-width: 480px) {
@@ -25,7 +30,7 @@ export const PlayListItem = styled.li`
 export const SongTitle = styled.p`
   font-size: 1.1rem;
   font-weight: bold;
-  color: #333;
+  color: #eee;
   @media screen and (max-width: 480px) {
     font-size: 0.75rem;
   }
@@ -38,4 +43,16 @@ export const Singer = styled.p`
   @media screen and (max-width: 480px) {
     font-size: 0.65rem;
   }
+`;
+
+export const ItemPlaying = styled.div`
+  position: absolute;
+  top: 0px;
+  right: 0;
+  width: 50px;
+  height: 100%;
+  color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
