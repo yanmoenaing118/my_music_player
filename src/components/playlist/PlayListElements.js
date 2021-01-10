@@ -10,7 +10,6 @@ export const PlayListContainer = styled.div`
   transition: all 0.3s ease-in;
   left: ${({ open }) => (open ? 0 : `-100vw`)};
   /* height: 100vh; */
-  border-right: 5px double #ccc;
   background-color: var(--gray-color-dark);
   display: flex;
   width: 60%;
@@ -32,6 +31,17 @@ export const PlayListBar = styled.div`
   @media screen and (max-width: 480px) {
     padding: 0.5rem 0.4rem;
   }
+
+  /* &::after {
+    content: "";
+    display: table;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 100%;
+    background-color: #fff;
+  } */
 `;
 
 export const PlayListTitle = styled.h2`

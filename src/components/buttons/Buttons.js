@@ -11,7 +11,6 @@ export const OpenPlayListBtn = styled.button`
   cursor: pointer;
   border: none;
   outline: none;
-  padding: 0.5rem;
   background: none;
   color: var(--primary-color);
   transition: transform 0.1s ease;
