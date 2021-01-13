@@ -9,7 +9,10 @@ import {
   AudioElement,
   AudioArtist,
   AudioTitle,
+  Rotate,
 } from "./AudioDetails_Elements";
+
+import { MdFlip } from "react-icons/md";
 
 export default function AudioDetails({
   currentPoster,
@@ -26,6 +29,7 @@ export default function AudioDetails({
   onAudioTimeUpdate,
   onAudioPlay,
   onAudioLoadedData,
+  onFlip,
 }) {
   const imageLoaded = useSelector((state) => state.songs.imageLoaded);
 
@@ -64,6 +68,9 @@ export default function AudioDetails({
               Sang by {singer} - {drama}
             </AudioArtist>
           </AudioTitleContainer>
+          <Rotate onClick={onFlip}>
+            <MdFlip size="100%" />
+          </Rotate>
         </AudioDetailsContainer>
       </ContainerCenter>
     </Container>

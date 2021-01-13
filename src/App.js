@@ -25,7 +25,7 @@ function App() {
         <ContainerCenter mWidth="800px">
           <TogglePlayListBtnContainer>
             <OpenPlayListBtn>
-              <RiPlayList2Line size="30px" onClick={openPlayList} />
+              <RiPlayList2Line size="100%" onClick={openPlayList} />
             </OpenPlayListBtn>
           </TogglePlayListBtnContainer>
         </ContainerCenter>

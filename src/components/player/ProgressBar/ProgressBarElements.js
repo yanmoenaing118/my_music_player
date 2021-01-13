@@ -10,7 +10,7 @@ export const ProgressBar = styled.div`
   height: 3px;
   width: 100%;
   max-width: 800px;
-  background-color: var(--gray-color-dark);
+  background-color: var(--gray-color-light);
   margin-bottom: 0.6rem;
 
   display: flex;

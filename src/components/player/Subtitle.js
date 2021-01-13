@@ -7,7 +7,9 @@ const SubtitleStyle = styled.div`
   margin-left: auto;
   margin-right: auto;
   font-size: 1.6rem;
+  font-weight: bold;
   color: #fff;
+  text-shadow: 0 5px 10px rgba(0, 0, 0, 1);
   line-height: 1.7;
   height: 60vh;
   display: flex;
@@ -16,7 +18,6 @@ const SubtitleStyle = styled.div`
   text-align: center;
   z-index: 2000;
   letter-spacing: 2px;
-
   @media screen and (max-width: 480px) {
     font-size: 1rem;
   }

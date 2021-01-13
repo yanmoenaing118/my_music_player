@@ -22,7 +22,7 @@ export default function PlayList({ open, closePlayList }) {
               <MdClose size="30px" />
             </ClosePlayListBtn>
           </PlayListBar>
-          <PlayListItems />
+          <PlayListItems closePlayList={closePlayList} />
         </PlayListContainer>
       </ContainerCenter>
     </Container>

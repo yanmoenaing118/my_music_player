@@ -32,6 +32,8 @@ export default function AudioPlayer() {
   const [bufferedWidth, setBufferedWidth] = useState(0);
   const [loopOneSong, setLoopOneSong] = useState(false);
 
+  const [flip, setFlip] = useState(false);
+
   const onPausePlay = (e) => {
     /**
      * change the play button state depending upon the play state
@@ -114,6 +116,7 @@ export default function AudioPlayer() {
     /**
      * sync the subtitle with audio's currentTime
      */
+    if (!audioRef.current) return;
     setCurrentTime(audioRef.current.currentTime);
 
     syncData.forEach(function (element, index) {
@@ -178,6 +181,10 @@ export default function AudioPlayer() {
     setBufferedWidth(0);
   };
 
+  const onFlip = () => {
+    setFlip(!flip);
+  };
+
   useEffect(() => {
     /**
      * if the current song has changed, fetch the subtitle for new song
@@ -194,7 +201,10 @@ export default function AudioPlayer() {
     <Container pad="0px">
       <ContainerCenter mWidth="100%">
         {waiting && <Loading />}
-        <AudioBackgroundImage currentPoster={currentSong.poster} />
+        <AudioBackgroundImage
+          currentPoster={currentSong.poster}
+          rotated={flip}
+        />
         <Subtitle subtitleText={subtitleText} />
         <AudioPlayerContainer>
           <AudioDetails
@@ -212,6 +222,7 @@ export default function AudioPlayer() {
             onAudioTimeUpdate={onAudioTimeUpdate}
             onAudioPlay={onAudioPlay}
             onAudioLoadedData={onAudioLoadedData}
+            onFlip={onFlip}
           />
 
           <ProgressBar

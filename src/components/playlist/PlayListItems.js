@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setSongByIndex } from "./../../reducers";
 import { BsMusicNoteBeamed } from "react-icons/bs";
 
-export default function PlayListItems() {
+export default function PlayListItems({ closePlayList }) {
   const dispatch = useDispatch();
   const songs = useSelector((state) => state.songs.songs);
   const currentSongIndex = useSelector((state) => state.songs.currentSongIndex);
@@ -19,7 +19,13 @@ export default function PlayListItems() {
     <Items>
       {songs.map((song, index) => {
         return (
-          <Item key={index} onClick={(e) => dispatch(setSongByIndex(index))}>
+          <Item
+            key={index}
+            onClick={(e) => {
+              closePlayList();
+              dispatch(setSongByIndex(index));
+            }}
+          >
             <SongTitle>
               {song.title} - {song.drama}
             </SongTitle>

@@ -11,6 +11,7 @@ import {
   MdRepeat,
   MdRepeatOne,
 } from "react-icons/md";
+import { FaClosedCaptioning } from "react-icons/fa";
 export default function AudioControls({
   loopOneSong,
   play,
@@ -42,6 +43,10 @@ export default function AudioControls({
 
       <AudioControlBtn small={true} onClick={nextSong}>
         <MdSkipNext size="85%" />
+      </AudioControlBtn>
+
+      <AudioControlBtn small={true}>
+        <FaClosedCaptioning size="75%" />
       </AudioControlBtn>
     </AudioControlsContainer>
   );

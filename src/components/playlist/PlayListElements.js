@@ -7,10 +7,10 @@ export const PlayListContainer = styled.div`
   left: 0;
   width: 100%;
   z-index: 4444;
-  transition: all 0.3s ease-in;
+  transition: all 0.2s ease-in;
   left: ${({ open }) => (open ? 0 : `-100vw`)};
   /* height: 100vh; */
-  background-color: var(--gray-color-dark);
+  background-image: linear-gradient(to bottom right, #141820 35%, #141820df);
   display: flex;
   width: 60%;
   flex-direction: column;

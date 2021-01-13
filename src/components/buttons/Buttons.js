@@ -14,6 +14,8 @@ export const OpenPlayListBtn = styled.button`
   background: none;
   color: var(--primary-color);
   transition: transform 0.1s ease;
+  width: 25px;
+  height: 25px;
   &:hover {
     transform: scale(1.15);
     color: lightgreen;

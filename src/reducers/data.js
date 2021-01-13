@@ -12,7 +12,7 @@ import ColouredGlassPoster from "./../images/coloured_glass.jpeg";
 
 import MoonlightDrawnByCloudGlassSrc from "./../audio/moonlight_drawn_by_clouds.mp3";
 import MoonlightDrawnByCloudGlassSubtitle from "./../audio/moonlight_drawn_by_clouds.vtt";
-import MoonlightDrawnByCloudGlassPoster from "./../images/moonlight_drawn_by_clouds.jpg";
+import MoonlightDrawnByCloudGlassPoster from "./../images/love_in_moonlight2.png";
 
 import HereIAmAgainSrc from "./../audio/here_i_am_again.mp3";
 import HereIAmAgainSubtitle from "./../audio/here_i_am_again.vtt";

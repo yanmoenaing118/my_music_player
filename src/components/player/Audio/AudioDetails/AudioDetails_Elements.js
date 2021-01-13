@@ -76,3 +76,36 @@ export const ImgOverlay = styled.div`
     rgba(0, 0, 0, 0.8)
   );
 `;
+
+export const FlipPosterContainer = styled.div`
+  margin-left: auto;
+  cursor: pointer;
+  color: var(--primary-color);
+  width: 22px;
+  height: 22px;
+  align-self: flex-end;
+  margin-bottom: 0.5rem;
+
+  @media screen and (max-width: 480px) {
+    width: 18px;
+    height: 18px;
+  }
+`;
+
+export const Rotate = styled(FlipPosterContainer)`
+  animation-name: rotate;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+
+  transform-origin: center;
+
+  @keyframes rotate {
+    0% {
+      transform: rotateY(0deg);
+    }
+    100% {
+      transform: rotateY(360deg);
+    }
+  }
+`;

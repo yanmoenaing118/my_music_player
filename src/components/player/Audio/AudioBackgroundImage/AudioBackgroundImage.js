@@ -9,7 +9,17 @@ const BackgroundImageWrapper = styled.div`
   left: 0;
   width: 100%;
   height: 100vh;
-  z-index: 1;
+  z-index: -11;
+  /* overflow: hidden; */
+
+  transition: transform 1s ease-in-out;
+  transform: perspective(11000px);
+
+  transform-style: preserve-3d;
+  transform: ${({ rotated }) =>
+    rotated
+      ? "perspective(1100px) translateZ(-260px) rotateY(180deg) "
+      : "perspective(1100px) translateZ(0) rotateY(0deg) "};
 `;
 
 const GradientBg = styled.div`
@@ -21,9 +31,9 @@ const GradientBg = styled.div`
   height: 100%;
   background: radial-gradient(
     circle,
-    rgba(0, 0, 0, 0.6) 0%,
-    rgba(0, 0, 0, 0.85) 65%,
-    rgba(0, 1, 1, 0.85) 100%
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.6) 65%,
+    rgba(0, 1, 1, 0.6) 100%
   );
 `;
 
@@ -35,21 +45,23 @@ const BackgroundImage = styled.img`
   object-fit: cover;
   object-position: center;
   z-index: 1;
-  opacity: 0;
-  transform: scale(0.5);
-  transition: opacity 0.2s ease;
+  transition: transform 0.5s ease-in-out;
+  transform: ${({ imageLoaded }) =>
+    imageLoaded ? "translateX(0)" : "translateX(100%)"};
+  opacity: ${({ imageLoaded }) => (imageLoaded ? 1 : 0)};
 `;
 
-export default function AudioBackgroundImage({ currentPoster }) {
+export default function AudioBackgroundImage({ currentPoster, rotated }) {
   const dispatch = useDispatch();
   const imageLoaded = useSelector((state) => state.songs.imageLoaded);
+
   return (
-    <BackgroundImageWrapper>
+    <BackgroundImageWrapper rotated={rotated}>
       <GradientBg></GradientBg>
       <BackgroundImage
         src={currentPoster}
         alt="Poster"
-        style={{ opacity: imageLoaded ? 1 : 0, transform: "scale(1)" }}
+        imageLoaded={imageLoaded}
         onLoad={(e) => dispatch(setImageLoaded(true))}
       />
     </BackgroundImageWrapper>
