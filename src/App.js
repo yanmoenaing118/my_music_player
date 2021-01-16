@@ -8,6 +8,7 @@ import {
   TogglePlayListBtnContainer,
 } from "./components/buttons/Buttons";
 import { RiPlayList2Line } from "react-icons/ri";
+import Particles from "./components/particles/Particles";
 
 function App() {
   const [showPlayList, setShowPlayList] = useState(false);
@@ -21,6 +22,7 @@ function App() {
 
   return (
     <div className="App">
+      <Particles />
       <Container>
         <ContainerCenter mWidth="800px">
           <TogglePlayListBtnContainer>

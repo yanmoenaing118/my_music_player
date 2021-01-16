@@ -4,7 +4,7 @@ import OnlyForYouPoster from "./../images/general_lady.png";
 
 import ElodSrc from "./../audio/elod.mp3";
 import ElodSubtitle from "./../audio/elod.vtt";
-import ElodPoster from "./../images/elod.png";
+import ElodPoster from "./../images/elod.png"; // jpeg || png
 
 import ColouredGlassSrc from "./../audio/coloured_glass.mp3";
 import ColouredGlassSubtitle from "./../audio/coloured_glass.vtt";
@@ -12,11 +12,11 @@ import ColouredGlassPoster from "./../images/coloured_glass.jpeg";
 
 import MoonlightDrawnByCloudGlassSrc from "./../audio/moonlight_drawn_by_clouds.mp3";
 import MoonlightDrawnByCloudGlassSubtitle from "./../audio/moonlight_drawn_by_clouds.vtt";
-import MoonlightDrawnByCloudGlassPoster from "./../images/love_in_moonlight2.png";
+import MoonlightDrawnByCloudGlassPoster from "./../images/moonlight.jpeg";
 
 import HereIAmAgainSrc from "./../audio/here_i_am_again.mp3";
 import HereIAmAgainSubtitle from "./../audio/here_i_am_again.vtt";
-import HereIAmAgainPoster from "./../images/cloy.jpg";
+import HereIAmAgainPoster from "./../images/cloy.jpeg";
 
 import DoneForMeSrc from "./../audio/done_for_me.mp3";
 import DoneForMeSubtitle from "./../audio/done_for_me.vtt";
@@ -24,7 +24,7 @@ import DoneForMePoster from "./../images/hotel_deluna.jpg";
 
 import ThisLoveSrc from "./../audio/this_love.mp3";
 import ThisLoveSubtitle from "./../audio/this_love.vtt";
-import ThisLovePoster from "./../images/dst_sun.jpg";
+import ThisLovePoster from "./../images/dst.jpeg";
 
 const initialState = {
   songs: [

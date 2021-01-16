@@ -29,11 +29,10 @@ const GradientBg = styled.div`
   z-index: 500;
   width: 100%;
   height: 100%;
-  background: radial-gradient(
-    circle,
-    rgba(0, 0, 0, 0.4) 0%,
-    rgba(0, 0, 0, 0.6) 65%,
-    rgba(0, 1, 1, 0.6) 100%
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.6)
   );
 `;
 
