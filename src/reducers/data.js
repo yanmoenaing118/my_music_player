@@ -3,7 +3,8 @@ import OnlyForYouSubtitle from "./../audio/for_one_person.vtt";
 import OnlyForYouPoster from "./../images/general_lady.png";
 
 import ElodSrc from "./../audio/elod.mp3";
-import ElodSubtitle from "./../audio/elod.vtt";
+import ElodEngSubtitle from "./../audio/elod.vtt";
+import ElodMmSubtitle from "./../audio/elod_mmsub.vtt";
 import ElodPoster from "./../images/elod.png"; // jpeg || png
 
 import ColouredGlassSrc from "./../audio/coloured_glass.mp3";
@@ -35,7 +36,8 @@ const initialState = {
       singer: "Dilraba Dilmurat & Silence Wang",
       src: ElodSrc,
       poster: ElodPoster,
-      subtitle: ElodSubtitle,
+      eng_subtitle: ElodEngSubtitle,
+      mm_subtitle: ElodMmSubtitle,
     },
     {
       id: 2,

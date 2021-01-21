@@ -72,8 +72,8 @@ export const ImgOverlay = styled.div`
   border-radius: 10px;
   background-image: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.4),
-    rgba(0, 0, 0, 0.8)
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0.4)
   );
 `;
 

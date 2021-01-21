@@ -11,6 +11,7 @@ import { RiPlayList2Line } from "react-icons/ri";
 import Particles from "./components/particles/Particles";
 
 function App() {
+  // const router =
   const [showPlayList, setShowPlayList] = useState(false);
 
   const openPlayList = () => {

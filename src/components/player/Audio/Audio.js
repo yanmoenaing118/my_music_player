@@ -27,10 +27,12 @@ export default function AudioPlayer() {
   const [currentTime, setCurrentTime] = useState(0);
   const [play, setPlay] = useState(false);
   const [waiting, setWaiting] = useState(false);
-  const [syncData, setSyncData] = useState([]);
+  const [syncDataEng, setSyncDataEng] = useState([]);
+  const [syncDataMm, setSyncDataMm] = useState([]);
   const [subtitleText, setSubtitleText] = useState("");
   const [bufferedWidth, setBufferedWidth] = useState(0);
   const [loopOneSong, setLoopOneSong] = useState(false);
+  const [mmsub, setMmsub] = useState(false);
 
   const [flip, setFlip] = useState(false);
 
@@ -119,6 +121,8 @@ export default function AudioPlayer() {
     if (!audioRef.current) return;
     setCurrentTime(audioRef.current.currentTime);
 
+    let syncData = mmsub ? syncDataMm : syncDataEng;
+
     syncData.forEach(function (element, index) {
       if (
         audioRef.current.currentTime * 1000 >= element.start &&
@@ -176,7 +180,7 @@ export default function AudioPlayer() {
   const resetStates = () => {
     setWaiting(false);
     setPlay(false);
-    setSyncData([]);
+    setSyncDataEng([]);
     setSubtitleText("");
     setBufferedWidth(0);
   };
@@ -185,15 +189,24 @@ export default function AudioPlayer() {
     setFlip(!flip);
   };
 
+  const toggleTranslation = () => {
+    setMmsub((prev) => !prev);
+  };
+
   useEffect(() => {
     /**
      * if the current song has changed, fetch the subtitle for new song
      */
     resetStates();
-    fetchSubtitle(currentSong.subtitle)
+    fetchSubtitle(currentSong.eng_subtitle)
       .then(createSubtitle)
       .then((data) => {
-        setSyncData(data);
+        setSyncDataEng(data);
+        return fetchSubtitle(currentSong.mm_subtitle);
+      })
+      .then(createSubtitle)
+      .then((data) => {
+        setSyncDataMm(data);
       });
   }, [currentSong]);
 
@@ -240,6 +253,8 @@ export default function AudioPlayer() {
             prevSong={prevSong}
             onPausePlay={onPausePlay}
             nextSong={nextSong}
+            setMmsub={toggleTranslation}
+            mmsub={mmsub}
           />
         </AudioPlayerContainer>
       </ContainerCenter>

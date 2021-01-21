@@ -1,7 +1,10 @@
 import React from "react";
 import styles from "./Particles.module.scss";
 
-export default function Particles() {
+export default function Particles(props) {
+  console.log(props);
+  console.log("What is your name?");
+
   return (
     <div className={styles.AnimationWrapper}>
       <div className={`${styles.particle} ${styles.particleOne}`}></div>

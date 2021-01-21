@@ -10,16 +10,15 @@ const BackgroundImageWrapper = styled.div`
   width: 100%;
   height: 100vh;
   z-index: -11;
-  /* overflow: hidden; */
 
   transition: transform 1s ease-in-out;
-  transform: perspective(11000px);
+  transform: perspective(1100px);
 
   transform-style: preserve-3d;
   transform: ${({ rotated }) =>
     rotated
-      ? "perspective(1100px) translateZ(-260px) rotateY(180deg) "
-      : "perspective(1100px) translateZ(0) rotateY(0deg) "};
+      ? "perspective(1100px) translateY(-100px) translateZ(-500px) rotateY(180deg) "
+      : "perspective(1100px) translateY(0) translateZ(0) rotateY(0deg) "};
 `;
 
 const GradientBg = styled.div`
@@ -31,8 +30,15 @@ const GradientBg = styled.div`
   height: 100%;
   background-image: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.5),
-    rgba(0, 0, 0, 0.6)
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 10%,
+    rgba(0, 0, 0, 0.2) 25%,
+    rgba(0, 0, 0, 0.3) 35%,
+    rgba(0, 0, 0, 0.4) 60%,
+    rgba(0, 0, 0, 0.5) 70%,
+    rgba(0, 0, 0, 0.6) 80%,
+    rgba(0, 0, 0, 0.9) 90%,
+    rgba(0, 0, 0, 1) 100%
   );
 `;
 
@@ -43,11 +49,12 @@ const BackgroundImage = styled.img`
   background-position: top center;
   object-fit: cover;
   object-position: center;
-  z-index: 1;
+  z-index: 2;
   transition: transform 0.5s ease-in-out;
   transform: ${({ imageLoaded }) =>
     imageLoaded ? "translateX(0)" : "translateX(100%)"};
   opacity: ${({ imageLoaded }) => (imageLoaded ? 1 : 0)};
+  box-shadow: 0 0 15px 15px rgba(255, 255, 255, 0.7);
 `;
 
 export default function AudioBackgroundImage({ currentPoster, rotated }) {
