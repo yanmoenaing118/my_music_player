@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const PlayListContainer = styled.div`
-  /* background-attachment: fixed; */
   position: fixed;
   top: 0;
   left: 0;
@@ -9,13 +8,10 @@ export const PlayListContainer = styled.div`
   z-index: 4444;
   transition: all 0.2s ease-in;
   left: ${({ open }) => (open ? 0 : `-100vw`)};
-  /* height: 100vh; */
   background-image: linear-gradient(to bottom right, #141820 35%, #141820df);
   display: flex;
   width: 60%;
   flex-direction: column;
-  /* align-items: center; */
-
   @media screen and (max-width: 768px) {
     width: 100%;
   }
@@ -31,17 +27,6 @@ export const PlayListBar = styled.div`
   @media screen and (max-width: 480px) {
     padding: 0.5rem 0.4rem;
   }
-
-  /* &::after {
-    content: "";
-    display: table;
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 50px;
-    height: 100%;
-    background-color: #fff;
-  } */
 `;
 
 export const PlayListTitle = styled.h2`
