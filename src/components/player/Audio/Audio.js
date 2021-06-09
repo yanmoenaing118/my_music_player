@@ -28,7 +28,7 @@ export default function AudioPlayer() {
   const [play, setPlay] = useState(false);
   const [waiting, setWaiting] = useState(false);
   const [syncDataEng, setSyncDataEng] = useState([]);
-  const [syncDataMm, setSyncDataMm] = useState([]);
+  // const [syncDataMm, setSyncDataMm] = useState([]);
   const [subtitleText, setSubtitleText] = useState("");
   const [bufferedWidth, setBufferedWidth] = useState(0);
   const [loopOneSong, setLoopOneSong] = useState(false);
@@ -121,20 +121,22 @@ export default function AudioPlayer() {
     if (!audioRef.current) return;
     setCurrentTime(audioRef.current.currentTime);
     
-    let syncData = mmsub ? syncDataMm : syncDataEng;
+    // let syncData = mmsub ? syncDataMm : syncDataEng;
 
-    if(syncData.length === 0 ) {
-      setSubtitleText("မြန်မာစာတန်းထိုးမရနိင်ပါ");
-    } else {
-      syncData.forEach(function (element, index) {
-        if (
-          audioRef.current.currentTime * 1000 >= element.start &&
-          audioRef.current.currentTime * 1000 <= element.end
-        ) {
-          setSubtitleText(syncData[index].part);
-        }
-      });
-    }
+    syncDataEng.forEach(function (element, index) {
+      if (
+        audioRef.current.currentTime * 1000 >= element.start &&
+        audioRef.current.currentTime * 1000 <= element.end
+      ) {
+        setSubtitleText(syncDataEng[index].part);
+      }
+    });
+
+    // if(syncData.length === 0 ) {
+    //   setSubtitleText("မြန်မာစာတန်းထိုးမရနိင်ပါ");
+    // } else {
+      
+    // }
 
     
   };
@@ -187,7 +189,7 @@ export default function AudioPlayer() {
     setWaiting(false);
     setPlay(false);
     setSyncDataEng([]);
-    setSyncDataMm([]);
+    // setSyncDataMm([]);
     setSubtitleText("");
     setBufferedWidth(0);
     setMmsub(false);
@@ -202,10 +204,6 @@ export default function AudioPlayer() {
   };
 
   useEffect(() => {
-    resetStates();    
-  }, [currentIndex]);
-
-  useEffect(() => {
     /**
      * if the current song has changed, fetch the subtitle for new song
      */
@@ -214,12 +212,8 @@ export default function AudioPlayer() {
       .then(createSubtitle)
       .then((data) => {
         setSyncDataEng(data);
-        return fetchSubtitle(currentSong.mm_subtitle);
       })
-      .then(createSubtitle)
-      .then((data) => {
-        setSyncDataMm(data);
-      });
+      
   }, [currentSong]);
 
   return (

@@ -97,6 +97,10 @@ const initialState = {
       poster: ColouredGlassPoster,
       eng_subtitle: ColouredGlassSubtitle,
     },
+
+
+    
+    
   ],
 
   currentSongIndex: 0,
