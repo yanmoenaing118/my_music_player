@@ -46,7 +46,7 @@ const initialState = {
       singer: "Ye Xuan Qing",
       src: OnlyForYouSrc,
       poster: OnlyForYouPoster,
-      subtitle: OnlyForYouSubtitle,
+      eng_subtitle: OnlyForYouSubtitle,
     },
 
     {
@@ -56,7 +56,7 @@ const initialState = {
       singer: "Someone",
       src: MoonlightDrawnByCloudGlassSrc,
       poster: MoonlightDrawnByCloudGlassPoster,
-      subtitle: MoonlightDrawnByCloudGlassSubtitle,
+      eng_subtitle: MoonlightDrawnByCloudGlassSubtitle,
     },
     {
       id: 5,
@@ -65,7 +65,7 @@ const initialState = {
       singer: "Davichi",
       src: HereIAmAgainSrc,
       poster: HereIAmAgainPoster,
-      subtitle: HereIAmAgainSubtitle,
+      eng_subtitle: HereIAmAgainSubtitle,
     },
 
     {
@@ -75,7 +75,7 @@ const initialState = {
       singer: "Davichi",
       src: ThisLoveSrc,
       poster: ThisLovePoster,
-      subtitle: ThisLoveSubtitle,
+      eng_subtitle: ThisLoveSubtitle,
     },
 
     {
@@ -85,7 +85,7 @@ const initialState = {
       singer: "Punch",
       src: DoneForMeSrc,
       poster: DoneForMePoster,
-      subtitle: DoneForMeSubtitle,
+      eng_subtitle: DoneForMeSubtitle,
     },
 
     {
@@ -95,7 +95,7 @@ const initialState = {
       singer: "Liu Yu Ning",
       src: ColouredGlassSrc,
       poster: ColouredGlassPoster,
-      subtitle: ColouredGlassSubtitle,
+      eng_subtitle: ColouredGlassSubtitle,
     },
   ],
 

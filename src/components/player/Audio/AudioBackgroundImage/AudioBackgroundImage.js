@@ -54,7 +54,7 @@ const BackgroundImage = styled.img`
   transform: ${({ imageLoaded }) =>
     imageLoaded ? "translateX(0)" : "translateX(100%)"};
   opacity: ${({ imageLoaded }) => (imageLoaded ? 1 : 0)};
-  box-shadow: 0 0 15px 15px rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 55px 50px rgba(255, 255, 255, 0.2);
 `;
 
 export default function AudioBackgroundImage({ currentPoster, rotated }) {

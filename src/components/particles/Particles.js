@@ -1,16 +1,13 @@
 import React from "react";
-import styles from "./Particles.module.scss";
+import "./Particles.css";
 
-export default function Particles(props) {
-  console.log(props);
-  console.log("What is your name?");
-
+export default function Particles() {
   return (
-    <div className={styles.AnimationWrapper}>
-      <div className={`${styles.particle} ${styles.particleOne}`}></div>
-      <div className={`${styles.particle} ${styles.particleTwo}`}></div>
-      <div className={`${styles.particle} ${styles.particleThree}`}></div>
-      <div className={`${styles.particle} ${styles.particleFour}`}></div>
+    <div className="AnimationWrapper">
+      <div className="particle particleOne"></div>
+      <div className="particle particleTwo"></div>
+      <div className="particle particleThree"></div>
+      <div className="particle particleFour"></div>
     </div>
   );
 }

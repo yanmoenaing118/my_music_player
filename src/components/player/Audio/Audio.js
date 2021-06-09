@@ -120,8 +120,13 @@ export default function AudioPlayer() {
      */
     if (!audioRef.current) return;
     setCurrentTime(audioRef.current.currentTime);
-
+    
     let syncData = mmsub ? syncDataMm : syncDataEng;
+
+    if(syncData.length === 0 ) {
+      setSubtitleText("မြန်မာစာတန်းထိုးမရနိင်ပါ");
+      return;
+    }
 
     syncData.forEach(function (element, index) {
       if (
@@ -201,6 +206,7 @@ export default function AudioPlayer() {
     fetchSubtitle(currentSong.eng_subtitle)
       .then(createSubtitle)
       .then((data) => {
+        console.log(data);
         setSyncDataEng(data);
         return fetchSubtitle(currentSong.mm_subtitle);
       })
