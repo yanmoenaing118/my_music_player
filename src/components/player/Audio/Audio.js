@@ -125,17 +125,18 @@ export default function AudioPlayer() {
 
     if(syncData.length === 0 ) {
       setSubtitleText("မြန်မာစာတန်းထိုးမရနိင်ပါ");
-      return;
+    } else {
+      syncData.forEach(function (element, index) {
+        if (
+          audioRef.current.currentTime * 1000 >= element.start &&
+          audioRef.current.currentTime * 1000 <= element.end
+        ) {
+          setSubtitleText(syncData[index].part);
+        }
+      });
     }
 
-    syncData.forEach(function (element, index) {
-      if (
-        audioRef.current.currentTime * 1000 >= element.start &&
-        audioRef.current.currentTime * 1000 <= element.end
-      ) {
-        setSubtitleText(syncData[index].part);
-      }
-    });
+    
   };
 
   const onSkipAhead = (pos) => {
@@ -186,8 +187,10 @@ export default function AudioPlayer() {
     setWaiting(false);
     setPlay(false);
     setSyncDataEng([]);
+    setSyncDataMm([]);
     setSubtitleText("");
     setBufferedWidth(0);
+    setMmsub(false);
   };
 
   const onFlip = () => {
@@ -199,6 +202,10 @@ export default function AudioPlayer() {
   };
 
   useEffect(() => {
+    resetStates();    
+  }, [currentIndex]);
+
+  useEffect(() => {
     /**
      * if the current song has changed, fetch the subtitle for new song
      */
@@ -206,7 +213,6 @@ export default function AudioPlayer() {
     fetchSubtitle(currentSong.eng_subtitle)
       .then(createSubtitle)
       .then((data) => {
-        console.log(data);
         setSyncDataEng(data);
         return fetchSubtitle(currentSong.mm_subtitle);
       })
