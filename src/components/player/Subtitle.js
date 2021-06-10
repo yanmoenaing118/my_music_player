@@ -14,7 +14,7 @@ const SubtitleStyle = styled.div`
   height: 60vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   text-align: center;
   z-index: 2000;
   letter-spacing: 2px;
