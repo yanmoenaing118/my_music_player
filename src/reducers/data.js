@@ -17,7 +17,7 @@ import MoonlightDrawnByCloudGlassPoster from "./../images/moonlight.jpeg";
 
 import HereIAmAgainSrc from "./../audio/here_i_am_again.mp3";
 import HereIAmAgainSubtitle from "./../audio/here_i_am_again.vtt";
-import HereIAmAgainPoster from "./../images/cloy.jpeg";
+import HereIAmAgainPoster from "./../images/cloy.jpg";
 
 import DoneForMeSrc from "./../audio/done_for_me.mp3";
 import DoneForMeSubtitle from "./../audio/done_for_me.vtt";
