@@ -27,6 +27,10 @@ import ThisLoveSrc from "./../audio/this_love.mp3";
 import ThisLoveSubtitle from "./../audio/this_love.vtt";
 import ThisLovePoster from "./../images/dst.jpeg";
 
+import StartOverSrc from "./../audio/start_over_itaewon.mp3";
+import StartOverSubtitle from "./../audio/start_over_itaewon.vtt";
+import StartOverPoster from "./../images/itaewon_class.jpg";
+
 const initialState = {
   songs: [
     {
@@ -89,6 +93,16 @@ const initialState = {
     },
 
     {
+      id: 7,
+      title: "Start Over",
+      drama: "Itaewon Class",
+      singer: "Gaho",
+      src: StartOverSrc,
+      poster: StartOverPoster,
+      eng_subtitle: StartOverSubtitle,
+    },
+
+    {
       id: 3,
       title: "Coloured Glass",
       drama: "Love and Redemption",
@@ -97,10 +111,6 @@ const initialState = {
       poster: ColouredGlassPoster,
       eng_subtitle: ColouredGlassSubtitle,
     },
-
-
-    
-    
   ],
 
   currentSongIndex: 0,
