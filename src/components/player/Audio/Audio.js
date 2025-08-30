@@ -16,6 +16,27 @@ import AudioBackgroundImage from "./AudioBackgroundImage/AudioBackgroundImage";
 export default function AudioPlayer() {
   const audioRef = createRef();
 
+  // Safe play helper to handle browsers that block autoplay until user interaction
+  const playSafe = () => {
+    if (!audioRef.current) return;
+    const playPromise = audioRef.current.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          setPlay(true);
+        })
+        .catch((error) => {
+          // Play was prevented (user hasn't interacted). Keep UI in paused state.
+          // Optionally show UI to ask the user to tap to play.
+          console.warn("Audio play prevented:", error);
+          setPlay(false);
+        });
+    } else {
+      // Older browsers may not return a promise
+      setPlay(true);
+    }
+  };
+
   const dispatch = useDispatch();
   const currentIndex = useSelector((state) => state.songs.currentSongIndex);
   const currentSong = useSelector((state) =>
@@ -42,8 +63,7 @@ export default function AudioPlayer() {
      * toggle the play state by checking if the audio is playing or not
      */
     if (audioRef.current.paused || audioRef.current.ended) {
-      audioRef.current.play();
-      setPlay(true);
+      playSafe();
     } else {
       audioRef.current.pause();
       setPlay(false);
@@ -52,8 +72,7 @@ export default function AudioPlayer() {
   };
 
   const onAudioLoadedData = () => {
-    audioRef.current.play();
-    setPlay(true);
+  playSafe();
   };
 
   const onAudioMetadataLoad = (e) => {
@@ -76,8 +95,8 @@ export default function AudioPlayer() {
      * if there is enought data to begin playing the audio
      * play the audio and set play state to true
      */
-    audioRef.current.play();
-    setWaiting(false);
+  playSafe();
+  setWaiting(false);
     // setPlay(true);
   };
 
@@ -157,7 +176,7 @@ export default function AudioPlayer() {
     if (loopOneSong) {
       resetStates({ replayCurrent: true });
       // if loopOneSong is true, replay the current song
-      audioRef.current.play();
+      playSafe();
       return;
     }
 
